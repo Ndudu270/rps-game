@@ -5,6 +5,7 @@ import { Ability } from './ability';
 import { Stance } from './stance';
 import { RaceId } from './race';
 import { FactionId } from './faction';
+import { EquippedItems } from './inventory';
 
 export type PlayerId = string;
 export type MatchId = string;
@@ -15,6 +16,7 @@ export interface PlayerConfig {
   classId: string;
   raceId: RaceId;
   factionId: FactionId;
+  equippedItems?: EquippedItems; // Optional equipment for combat modifiers
 }
 
 export interface PlayerStateInMatch {

@@ -1,6 +1,6 @@
 import { Container, Graphics, Text, TextStyle } from 'pixi.js';
 
-export type SceneName = 'mainMenu' | 'settings' | 'game' | 'characterCreation' | 'hub';
+export type SceneName = 'mainMenu' | 'settings' | 'game' | 'characterCreation' | 'hub' | 'inventory' | 'shop' | 'HubScene';
 
 export interface IScene {
   container: Container;
@@ -52,5 +52,12 @@ export class SceneManager {
 
   getCurrentSceneName(): string | null {
     return this.currentSceneName;
+  }
+  
+  /**
+   * Switch scene by name - used by scenes to navigate
+   */
+  switchScene(name: SceneName): void {
+    this.switchTo(name);
   }
 }

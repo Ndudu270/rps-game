@@ -706,6 +706,16 @@ export class HubScene implements IScene {
   }
 
   private openOverlay(name: string): void {
+    // Check if opening Inventory or Shop - use dedicated scenes instead
+    if (name === 'Inventory') {
+      this.sceneManager.switchScene('inventory');
+      return;
+    }
+    if (name === 'Shop') {
+      this.sceneManager.switchScene('shop');
+      return;
+    }
+    
     this.closeOverlay();
     const overlay = this.overlays.get(name);
     if (overlay) {

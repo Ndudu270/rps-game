@@ -9,11 +9,12 @@ import { changeStance, applyStanceStatMods } from '../systems/StanceSystem';
 import { processStartOfTurnStatuses, canUseAbilities } from '../systems/StatusSystem';
 import { applyRaceStatMods, hasStatusImmunity } from '../systems/RaceSystem';
 import { applyFactionStatMods, processFactionPassiveOnTurnStart, processFactionPassiveOnDamageTaken } from '../systems/FactionSystem';
-import { createBaseStats, Stats } from '../../shared/types/stats';
+import { createBaseStats, Stats, applyStatModifiers, StatModifiers } from '../../shared/types/stats';
 import { Ability, createAbility } from '../../shared/types/ability';
 import { Stance, createStance } from '../../shared/types/stance';
 import { RACES } from '../../shared/types/race';
 import { FACTIONS } from '../../shared/types/faction';
+import { EquippedItems, calculateDerivedStats } from '../../shared/types/inventory';
 
 // Class definitions with stances and abilities
 export interface ClassDefinition {
@@ -63,6 +64,25 @@ function createPlayerState(config: import('../../shared/types/match').PlayerConf
   
   // Apply faction modifiers
   stats = applyFactionStatMods(stats, config.factionId);
+  
+  // Apply equipment modifiers (derived stats calculation)
+  if (config.equippedItems) {
+    const derivedStats = calculateDerivedStats(
+      stats.atk,
+      stats.def,
+      stats.spd,
+      stats.hp,
+      0, // base crit chance
+      0, // base luck
+      config.equippedItems
+    );
+    
+    // Apply derived stat changes
+    stats.atk = derivedStats.atk;
+    stats.def = derivedStats.def;
+    stats.spd = derivedStats.spd;
+    stats.hp = derivedStats.hp;
+  }
   
   // Calculate HP and STA from stats
   const maxHp = stats.hp;

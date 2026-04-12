@@ -6,6 +6,8 @@ import { SettingsScene } from './scenes/SettingsScene';
 import { GameScene } from './scenes/GameScene';
 import { CharacterCreationScene } from './scenes/CharacterCreationScene';
 import { HubScene } from './scenes/HubScene';
+import { InventoryScene } from './scenes/InventoryScene';
+import { ShopScene } from './scenes/ShopScene';
 
 // Initialize Pixi application
 const app = new Application();
@@ -31,6 +33,8 @@ async function init() {
   sceneManager.register('game', () => new GameScene(sceneManager));
   sceneManager.register('characterCreation', () => new CharacterCreationScene(sceneManager));
   sceneManager.register('hub', () => new HubScene(sceneManager));
+  sceneManager.register('inventory', () => new InventoryScene(sceneManager));
+  sceneManager.register('shop', () => new ShopScene(sceneManager));
   
   // Determine starting scene based on saved player data
   const playerData = localStorage.getItem('playerData');
