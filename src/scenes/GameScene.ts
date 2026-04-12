@@ -1,22 +1,75 @@
 import { Container, Graphics, Text, TextStyle } from 'pixi.js';
 import { SceneManager, IScene } from './SceneManager';
+import { PlayerData } from './CharacterCreationScene';
 
 export class GameScene implements IScene {
   container: Container;
   private sceneManager: SceneManager;
+  private playerData: PlayerData | null;
 
   constructor(sceneManager: SceneManager) {
     this.sceneManager = sceneManager;
     this.container = new Container();
+    this.playerData = null;
   }
 
   onEnter(): void {
+    this.loadPlayerData();
     this.createBackground();
     this.createLoadingText();
     this.createBackButton();
+    this.displayPlayerInfo();
   }
 
   onExit(): void {}
+
+  private loadPlayerData(): void {
+    if (typeof localStorage !== 'undefined') {
+      const savedData = localStorage.getItem('playerData');
+      if (savedData) {
+        this.playerData = JSON.parse(savedData);
+      }
+    }
+  }
+
+  private displayPlayerInfo(): void {
+    if (!this.playerData) {
+      const noDataText = new Text({ 
+        text: 'No character data found.\nGo back and create a character!', 
+        style: new TextStyle({ fontFamily: 'Arial', fontSize: 20, fill: 0xff6666, align: 'center' }) 
+      });
+      noDataText.anchor.set(0.5);
+      noDataText.position.set(512, 280);
+      this.container.addChild(noDataText);
+      return;
+    }
+
+    const infoStyle = new TextStyle({
+      fontFamily: 'Arial',
+      fontSize: 16,
+      fill: 0xffffff,
+      lineHeight: 24,
+    });
+
+    const infoLines = [
+      `Character: ${this.playerData.name}`,
+      `Race: ${this.playerData.race}`,
+      `Class: ${this.playerData.class}`,
+      `Background: ${this.playerData.background}`,
+      `Talents: ${this.playerData.talents.length > 0 ? this.playerData.talents.join(', ') : 'None'}`,
+      '',
+      'Stats:',
+      `  STR: ${this.playerData.stats.strength}  AGI: ${this.playerData.stats.agility}`,
+      `  INT: ${this.playerData.stats.intelligence}  CHA: ${this.playerData.stats.charisma}`,
+      `  END: ${this.playerData.stats.endurance}  PER: ${this.playerData.stats.perception}`,
+      `  LCK: ${this.playerData.stats.luck}`,
+    ];
+
+    const infoText = new Text({ text: infoLines.join('\n'), style: infoStyle });
+    infoText.anchor.set(0.5);
+    infoText.position.set(512, 250);
+    this.container.addChild(infoText);
+  }
 
   private createBackground(): void {
     const bg = new Graphics();
@@ -46,11 +99,11 @@ export class GameScene implements IScene {
     });
     const loadingText = new Text({ text: 'Game Loading...', style: loadingStyle });
     loadingText.anchor.set(0.5);
-    loadingText.position.set(512, 350);
+    loadingText.position.set(512, 450);
     this.container.addChild(loadingText);
     const subtitle = new Text({ text: '(Placeholder - Game Scene)', style: new TextStyle({ fontFamily: 'Arial', fontSize: 18, fill: 0x888888 }) });
     subtitle.anchor.set(0.5);
-    subtitle.position.set(512, 410);
+    subtitle.position.set(512, 510);
     this.container.addChild(subtitle);
   }
 

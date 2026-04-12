@@ -151,7 +151,19 @@ export class MainMenuScene implements IScene {
     return buttonContainer;
   }
 
-  private handleStartGame(): void { this.sceneManager.switchTo('game'); }
+  private handleStartGame(): void {
+    // Check if player data exists in local storage
+    if (typeof localStorage !== 'undefined') {
+      const savedData = localStorage.getItem('playerData');
+      if (savedData) {
+        // Player data exists, go directly to game
+        this.sceneManager.switchTo('game');
+        return;
+      }
+    }
+    // No player data, start character creation
+    this.sceneManager.switchTo('characterCreation');
+  }
   private handleSettings(): void { this.sceneManager.switchTo('settings'); }
   private handleExit(): void { this.showExitConfirmation(); }
 
