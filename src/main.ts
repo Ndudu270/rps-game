@@ -32,8 +32,12 @@ async function init() {
   sceneManager.register('characterCreation', () => new CharacterCreationScene(sceneManager));
   sceneManager.register('hub', () => new HubScene(sceneManager));
   
-  // Start with main menu
-  sceneManager.switchTo('mainMenu');
+  // Determine starting scene based on saved player data
+  const playerData = localStorage.getItem('playerData');
+  const startScene = playerData ? 'hub' : 'mainMenu';
+  
+  // Start with appropriate scene (no flicker, deterministic)
+  sceneManager.switchTo(startScene);
 }
 
 init().catch(console.error);
