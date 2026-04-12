@@ -65,12 +65,13 @@ export class HubScene implements IScene {
       this.backgroundGraphics.fill(`rgb(${r}, ${g}, ${b})`);
     }
 
+    // Add background first so fog layers can be added at index 1
+    this.container.addChildAt(this.backgroundGraphics, 0);
+
     // Add atmospheric fog layers
     this.createFogLayer(0.05, 0x2a2a4a, 100);
     this.createFogLayer(0.08, 0x1a1a3a, 150);
     this.createFogLayer(0.03, 0x3a3a5a, 80);
-
-    this.container.addChildAt(this.backgroundGraphics, 0);
   }
 
   private createFogLayer(alpha: number, color: number, yOffset: number): void {
