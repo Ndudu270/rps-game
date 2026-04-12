@@ -1,1 +1,2 @@
 (src/main.ts, src/scenes/HubScene.ts, src/scenes/CharacterCreationScene.ts, src/scenes/SceneManager.ts)
+node_modules/
