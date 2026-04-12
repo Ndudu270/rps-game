@@ -1,66 +1,18 @@
 import { Container, Graphics, Text, TextStyle, Assets } from 'pixi.js';
 import { SceneManager, IScene } from './SceneManager';
-import { Stats, applyStatModifiers, StatModifiers } from '../../shared/types/stats';
-import { StanceBonus, StancePenalty } from '../../shared/types/stance';
-import { calculateDamage, DamageCalculationInput } from '../../engine/core/CombatCalculator';
+import { Stats } from '../../shared/types/stats';
 import { SeededRNG } from '../../engine/core/RNG';
-
-// Training Mode specific types
-interface CombatLogEntry {
-  turn: number;
-  message: string;
-  playerAction?: string;
-  dummyAction?: string;
-  damageDealt?: number;
-  damageTaken?: number;
-}
-
-interface TrainingEntity {
-  name: string;
-  maxHp: number;
-  currentHp: number;
-  stats: Stats;
-  stance: StanceData;
-  isDefending: boolean;
-}
-
-interface StanceData {
-  id: string;
-  name: string;
-  description: string;
-  bonus: StanceBonus;
-  penalty?: StancePenalty;
-}
-
-// Predefined stances for training mode
-const TRAINING_STANCES: StanceData[] = [
-  {
-    id: 'aggressive',
-    name: 'Aggressive',
-    description: '+20% damage, -10% defense',
-    bonus: { damageMod: 1.2, defenseMod: 0.9 },
-    penalty: { damageReduction: 0 }
-  },
-  {
-    id: 'defensive',
-    name: 'Defensive',
-    description: '+30% defense, -10% damage',
-    bonus: { defenseMod: 1.3 },
-    penalty: { damageReduction: 0.1 }
-  },
-  {
-    id: 'balanced',
-    name: 'Balanced',
-    description: 'No modifiers',
-    bonus: {}
-  },
-  {
-    id: 'swift',
-    name: 'Swift',
-    description: '+15% crit chance',
-    bonus: { critChance: 0.15 }
-  }
-];
+import { 
+  resolveRound, 
+  generateEnemyActions, 
+  createTrainingDummy, 
+  createPlayerEntity,
+  STANCES,
+  CombatEntity,
+  CombatAction,
+  RoundResult,
+  StanceId
+} from '../../engine/core/CombatEngine';
 
 export class TrainingModeScene implements IScene {
   container: Container;
@@ -88,7 +40,7 @@ export class TrainingModeScene implements IScene {
   
   // Combat log
   private combatLogContainer: Container;
-  private combatLogEntries: CombatLogEntry[];
+  private combatLogEntries: string[];
   private combatLogTexts: Text[];
   
   // Action buttons
@@ -96,15 +48,18 @@ export class TrainingModeScene implements IScene {
   
   // Stance selector
   private stanceButtons: Map<string, Container>;
-  private currentStanceIndex: number;
+  private currentStance: StanceId;
   
-  // Game state
-  private player: TrainingEntity | null;
-  private dummy: TrainingEntity | null;
+  // Game state - using CombatEngine types
+  private player: CombatEntity | null;
+  private dummy: CombatEntity | null;
   private currentTurn: number;
   private isPlayerTurn: boolean;
   private battleActive: boolean;
   private rng: SeededRNG;
+  
+  // Pending player actions for the round
+  private pendingPlayerActions: CombatAction[];
   
   // Animation state
   private shakeTarget: 'player' | 'dummy' | null;
@@ -139,13 +94,14 @@ export class TrainingModeScene implements IScene {
     
     this.actionButtons = new Map();
     this.stanceButtons = new Map();
-    this.currentStanceIndex = 0;
+    this.currentStance = 'balanced';
     
     this.player = null;
     this.dummy = null;
     this.currentTurn = 0;
     this.isPlayerTurn = true;
     this.battleActive = false;
+    this.pendingPlayerActions = [];
     // Convert string to number seed using hash
     const seed = Math.floor(Math.random() * 1000000);
     this.rng = new SeededRNG(seed);
@@ -209,7 +165,7 @@ export class TrainingModeScene implements IScene {
   }
 
   private initializeTrainingState(): void {
-    // Create player entity from saved data or defaults
+    // Create player entity from saved data or defaults using CombatEngine
     const baseStats: Stats = {
       hp: 100,
       atk: 15,
@@ -230,42 +186,24 @@ export class TrainingModeScene implements IScene {
       baseStats.hp = 100 + (this.playerData.stats.endurance || 10) * 5;
     }
     
-    this.player = {
-      name: this.playerData?.name || 'Player',
-      maxHp: baseStats.hp,
-      currentHp: baseStats.hp,
-      stats: baseStats,
-      stance: TRAINING_STANCES[0],
-      isDefending: false
-    };
+    // Use CombatEngine factory functions
+    this.player = createPlayerEntity(this.playerData?.name || 'Player', baseStats);
+    this.player.stance = STANCES[this.currentStance];
     
-    // Create dummy opponent
-    this.dummy = {
-      name: 'Training Dummy',
-      maxHp: 200,
-      currentHp: 200,
-      stats: {
-        hp: 200,
-        atk: 12,
-        def: 5,
-        spd: 8,
-        int: 5,
-        res: 5,
-        sta: 100
-      },
-      stance: TRAINING_STANCES[2], // Balanced
-      isDefending: false
-    };
+    // Create dummy opponent using CombatEngine
+    this.dummy = createTrainingDummy();
     
     this.currentTurn = 0;
     this.isPlayerTurn = true;
     this.battleActive = true;
+    this.pendingPlayerActions = [];
     this.combatLogEntries = [];
     
     this.updatePlayerDisplay();
     this.updateDummyDisplay();
-    this.addCombatLogEntry(0, 'Training started! Select an action to begin.');
+    this.addCombatLogEntry('Training started! Select stance and actions, then confirm turn.');
     this.updateStanceButtons();
+    this.updateActionButtons();
   }
 
   private createBackground(): void {
@@ -409,7 +347,10 @@ export class TrainingModeScene implements IScene {
     const buttonHeight = 28;
     const spacing = 5;
     
-    TRAINING_STANCES.forEach((stance, index) => {
+    // Use STANCES from CombatEngine
+    const stanceEntries = Object.entries(STANCES);
+    
+    stanceEntries.forEach(([stanceId, stanceData], index) => {
       const col = index % 2;
       const row = Math.floor(index / 2);
       
@@ -425,7 +366,7 @@ export class TrainingModeScene implements IScene {
       btnContainer.addChild(bg);
       
       const label = new Text({ 
-        text: stance.name, 
+        text: stanceData.name, 
         style: new TextStyle({ fontFamily: 'Arial', fontSize: 11, fontWeight: 'bold', fill: 0xffffff }) 
       });
       label.anchor.set(0.5);
@@ -433,7 +374,7 @@ export class TrainingModeScene implements IScene {
       btnContainer.addChild(label);
       
       btnContainer.on('pointerenter', () => {
-        if (this.currentStanceIndex !== index) {
+        if (this.currentStance !== stanceId) {
           bg.clear();
           bg.roundRect(0, 0, buttonWidth, buttonHeight, 5);
           bg.fill({ color: 0x3a3a7e });
@@ -442,7 +383,7 @@ export class TrainingModeScene implements IScene {
       });
       
       btnContainer.on('pointerleave', () => {
-        if (this.currentStanceIndex !== index) {
+        if (this.currentStance !== stanceId) {
           bg.clear();
           bg.roundRect(0, 0, buttonWidth, buttonHeight, 5);
           bg.fill({ color: 0x2a2a5e });
@@ -451,10 +392,10 @@ export class TrainingModeScene implements IScene {
       });
       
       btnContainer.on('pointerup', () => {
-        this.selectStance(index);
+        this.selectStance(stanceId);
       });
       
-      this.stanceButtons.set(stance.id, btnContainer);
+      this.stanceButtons.set(stanceId, btnContainer);
       this.leftPanel.addChild(btnContainer);
     });
   }
@@ -744,141 +685,166 @@ export class TrainingModeScene implements IScene {
     this.container.addChild(this.bottomPanel);
   }
 
-  private selectStance(index: number): void {
+  private selectStance(stanceId: StanceId): void {
     if (!this.player || !this.battleActive) return;
     
-    this.currentStanceIndex = index;
-    this.player.stance = TRAINING_STANCES[index];
+    this.currentStance = stanceId;
+    this.player.stance = STANCES[stanceId];
     
     this.updateStanceButtons();
     this.updatePlayerDisplay();
     
-    this.addCombatLogEntry(this.currentTurn, `Player switched to ${this.player.stance.name} stance.`);
+    this.addCombatLogEntry(`Player switched to ${this.player.stance.name} stance.`);
+  }
+
+  private updateActionButtons(): void {
+    // Update action button states based on pending actions count (max 2 AP)
+    const maxAp = 2;
+    const currentAp = this.pendingPlayerActions.length;
+    
+    this.actionButtons.forEach((btn, actionId) => {
+      if (currentAp >= maxAp) {
+        btn.eventMode = 'none';
+        btn.alpha = 0.5;
+      } else if (this.battleActive && this.isPlayerTurn) {
+        btn.eventMode = 'static';
+        btn.alpha = 1.0;
+      } else {
+        btn.eventMode = 'none';
+        btn.alpha = 0.7;
+      }
+    });
   }
 
   private performPlayerAction(actionId: string): void {
     if (!this.player || !this.dummy || !this.battleActive || !this.isPlayerTurn) return;
     
-    this.player.isDefending = actionId === 'defend';
+    // Check if we have AP remaining (max 2 actions per round)
+    if (this.pendingPlayerActions.length >= 2) {
+      this.addCombatLogEntry('No Action Points remaining! Confirm turn to proceed.');
+      return;
+    }
     
+    // Map UI action to CombatEngine action type
+    let actionType: 'SLASH' | 'BLOCK' = 'SLASH';
     let actionName = '';
-    let damageDealt = 0;
-    let logMessage = '';
     
     switch (actionId) {
       case 'attack':
-        actionName = 'Strike';
-        damageDealt = this.calculateDamage(this.player, this.dummy, 1.0);
-        this.dummy.currentHp = Math.max(0, this.dummy.currentHp - damageDealt);
-        logMessage = `Player used ${actionName} (${damageDealt} damage)`;
-        this.triggerHitEffect('dummy');
+        actionType = 'SLASH';
+        actionName = 'Slash';
         break;
-        
       case 'defend':
-        actionName = 'Guard';
-        logMessage = `Player took a defensive stance`;
+        actionType = 'BLOCK';
+        actionName = 'Block';
         break;
-        
       case 'skill':
-        actionName = 'Power Strike';
-        damageDealt = this.calculateDamage(this.player, this.dummy, 1.5);
-        this.dummy.currentHp = Math.max(0, this.dummy.currentHp - damageDealt);
-        logMessage = `Player used ${actionName} (${damageDealt} damage)`;
-        this.triggerHitEffect('dummy');
+        actionType = 'SLASH';
+        actionName = 'Power Slash';
         break;
     }
     
-    this.addCombatLogEntry(this.currentTurn, logMessage);
-    this.updateDummyDisplay();
-    this.checkBattleEnd();
+    // Add to pending actions
+    this.pendingPlayerActions.push({
+      type: actionType,
+      stanceId: this.currentStance
+    });
     
-    if (this.battleActive) {
-      this.isPlayerTurn = false;
+    this.addCombatLogEntry(`Player queued: ${actionName}`);
+    this.updateActionButtons();
+    
+    // If we've used all AP, auto-confirm the turn
+    if (this.pendingPlayerActions.length >= 2) {
+      setTimeout(() => this.confirmTurn(), 300);
+    }
+  }
+
+  /**
+   * Confirm turn - send player actions to CombatEngine and resolve round
+   */
+  private confirmTurn(): void {
+    if (!this.player || !this.dummy || !this.battleActive) return;
+    
+    // If no actions queued, add a default SLASH with current stance
+    if (this.pendingPlayerActions.length === 0) {
+      this.pendingPlayerActions.push({
+        type: 'SLASH',
+        stanceId: this.currentStance
+      });
+      this.addCombatLogEntry('Player used default Slash action.');
+    }
+    
+    // Generate enemy actions using CombatEngine AI
+    const enemyActions = generateEnemyActions(this.dummy, this.rng);
+    
+    // Prepare input for CombatEngine
+    const roundInput = {
+      player: this.player,
+      enemy: this.dummy,
+      playerActions: this.pendingPlayerActions,
+      enemyActions: enemyActions,
+      rng: this.rng
+    };
+    
+    // Resolve round using CombatEngine
+    const result: RoundResult = resolveRound(roundInput);
+    
+    // Update entity states from result
+    this.player.currentHp = result.playerHp;
+    this.dummy.currentHp = result.enemyHp;
+    this.player.stance = STANCES[result.playerStance];
+    this.dummy.stance = STANCES[result.enemyStance];
+    this.currentStance = result.playerStance;
+    
+    // Log all combat events
+    result.combatLog.forEach(log => this.addCombatLogEntry(log));
+    
+    // Trigger visual effects for damage
+    result.playerActions.forEach(action => {
+      if (action.damageDealt > 0) {
+        this.triggerHitEffect('dummy');
+      }
+    });
+    result.enemyActions.forEach(action => {
+      if (action.damageDealt > 0) {
+        this.triggerHitEffect('player');
+      }
+    });
+    
+    // Update displays
+    this.updatePlayerDisplay();
+    this.updateDummyDisplay();
+    
+    // Check battle end
+    if (result.battleEnded) {
+      this.battleActive = false;
+      if (result.winner === 'player') {
+        this.addCombatLogEntry('🎉 Training Dummy defeated! Press Reset to try again.');
+      } else {
+        this.addCombatLogEntry('💀 Player defeated! Press Reset to try again.');
+      }
+      this.disableActionButtons();
+    } else {
+      // Reset for next turn
+      this.isPlayerTurn = true;
+      this.pendingPlayerActions = [];
+      this.player.isBlocking = false;
+      this.dummy.isBlocking = false;
+      this.currentTurn++;
       this.updateTurnIndicator(this.centerPanel.getChildAt(2) as Container);
-      setTimeout(() => this.performDummyAction(), 800);
+      this.updateActionButtons();
     }
   }
 
   private performDummyAction(): void {
-    if (!this.player || !this.dummy || !this.battleActive) return;
-    
-    // Simple AI: random action with bias
-    const roll = this.rng.next();
-    let actionName = '';
-    let damageDealt = 0;
-    let logMessage = '';
-    
-    // Dummy stance selection (random)
-    const stanceRoll = this.rng.next();
-    if (stanceRoll < 0.3) {
-      this.dummy.stance = TRAINING_STANCES[0]; // Aggressive
-    } else if (stanceRoll < 0.5) {
-      this.dummy.stance = TRAINING_STANCES[1]; // Defensive
-    } else {
-      this.dummy.stance = TRAINING_STANCES[2]; // Balanced
-    }
-    
-    this.dummy.isDefending = false;
-    
-    if (roll < 0.6) {
-      // Attack
-      actionName = 'Basic Attack';
-      damageDealt = this.calculateDamage(this.dummy, this.player, 1.0);
-      if (this.player.isDefending) {
-        damageDealt = Math.floor(damageDealt * 0.5);
-      }
-      this.player.currentHp = Math.max(0, this.player.currentHp - damageDealt);
-      logMessage = `Dummy used ${actionName} (${damageDealt} damage to player)`;
-    } else if (roll < 0.8) {
-      // Defend
-      actionName = 'Brace';
-      this.dummy.isDefending = true;
-      logMessage = `Dummy took a defensive stance`;
-    } else {
-      // Heavy attack
-      actionName = 'Heavy Slam';
-      damageDealt = this.calculateDamage(this.dummy, this.player, 1.3);
-      if (this.player.isDefending) {
-        damageDealt = Math.floor(damageDealt * 0.5);
-      }
-      this.player.currentHp = Math.max(0, this.player.currentHp - damageDealt);
-      logMessage = `Dummy used ${actionName} (${damageDealt} damage to player)`;
-    }
-    
-    this.currentTurn++;
-    this.isPlayerTurn = true;
-    
-    this.addCombatLogEntry(this.currentTurn, logMessage);
-    this.updatePlayerDisplay();
-    this.updateDummyDisplay();
-    this.checkBattleEnd();
-    
-    if (this.battleActive) {
-      this.updateTurnIndicator(this.centerPanel.getChildAt(2) as Container);
-    }
+    // This method is deprecated - now handled by confirmTurn()
+    // Kept for backward compatibility but not used
   }
 
-  private calculateDamage(attacker: TrainingEntity, defender: TrainingEntity, multiplier: number): number {
-    const input: DamageCalculationInput = {
-      attackerStats: attacker.stats,
-      defenderStats: defender.stats,
-      abilityMultiplier: multiplier,
-      attackerStanceBonus: attacker.stance.bonus,
-      attackerStancePenalty: attacker.stance.penalty,
-      defenderStanceBonus: defender.stance.bonus,
-      defenderStancePenalty: defender.stance.penalty,
-      critChance: attacker.stance.bonus.critChance || 0,
-      critMultiplier: 2.0
-    };
-    
-    const result = calculateDamage(input, this.rng);
-    
-    // If defender is defending, reduce damage
-    if (defender.isDefending) {
-      return Math.floor(result.finalDamage * 0.5);
-    }
-    
-    return result.finalDamage;
+  private calculateDamage(attacker: CombatEntity, defender: CombatEntity, multiplier: number): number {
+    // This method is deprecated - damage calculation now handled by CombatEngine
+    // Kept for backward compatibility but not used
+    return 0;
   }
 
   private triggerHitEffect(target: 'player' | 'dummy'): void {
@@ -998,21 +964,20 @@ export class TrainingModeScene implements IScene {
     
     if (this.dummyStatusText) {
       const statusParts: string[] = [];
-      if (this.dummy.isDefending) statusParts.push('🛡️ Defending');
+      if (this.dummy.isBlocking) statusParts.push('🛡️ Blocking');
       statusParts.push(`Stance: ${this.dummy.stance.name}`);
       this.dummyStatusText.text = statusParts.join(' | ');
     }
   }
 
   private updateStanceButtons(): void {
-    this.stanceButtons.forEach((btn, id) => {
-      const index = TRAINING_STANCES.findIndex(s => s.id === id);
+    this.stanceButtons.forEach((btn, stanceId) => {
       const bg = btn.getChildAt(0) as Graphics;
       
       bg.clear();
       bg.roundRect(0, 0, 110, 28, 5);
       
-      if (index === this.currentStanceIndex) {
+      if (stanceId === this.currentStance) {
         bg.fill({ color: 0x44aa44 });
         bg.stroke({ width: 2, color: 0x88ff88 });
       } else {
@@ -1029,8 +994,8 @@ export class TrainingModeScene implements IScene {
     });
   }
 
-  private addCombatLogEntry(turn: number, message: string): void {
-    this.combatLogEntries.push({ turn, message });
+  private addCombatLogEntry(message: string): void {
+    this.combatLogEntries.push(message);
     
     // Limit log entries
     if (this.combatLogEntries.length > 8) {
@@ -1049,9 +1014,9 @@ export class TrainingModeScene implements IScene {
       leading: 3
     });
     
-    this.combatLogEntries.forEach((entry, index) => {
+    this.combatLogEntries.forEach((entryMsg, index) => {
       const text = new Text({ 
-        text: entry.message, 
+        text: entryMsg, 
         style: entryStyle 
       });
       text.position.set(0, index * 32);
