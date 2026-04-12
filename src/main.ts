@@ -5,6 +5,7 @@ import { MainMenuScene } from './scenes/MainMenuScene';
 import { SettingsScene } from './scenes/SettingsScene';
 import { GameScene } from './scenes/GameScene';
 import { CharacterCreationScene } from './scenes/CharacterCreationScene';
+import { HubScene } from './scenes/HubScene';
 
 // Initialize Pixi application
 const app = new Application();
@@ -29,6 +30,7 @@ async function init() {
   sceneManager.register('settings', () => new SettingsScene(sceneManager));
   sceneManager.register('game', () => new GameScene(sceneManager));
   sceneManager.register('characterCreation', () => new CharacterCreationScene(sceneManager));
+  sceneManager.register('hub', () => new HubScene(sceneManager));
   
   // Start with main menu
   sceneManager.switchTo('mainMenu');

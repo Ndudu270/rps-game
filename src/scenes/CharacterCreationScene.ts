@@ -691,7 +691,7 @@ export class CharacterCreationScene implements IScene {
     const finishBtn = this.createNavButton('Finish', 600, () => {
       // Talents are optional, can have 0, 1, or 2
       this.savePlayerData();
-      this.sceneManager.switchTo('game');
+      this.sceneManager.switchTo('hub');
     });
     finishBtn.position.set(640, 600);
     stepContainer.addChild(finishBtn);
