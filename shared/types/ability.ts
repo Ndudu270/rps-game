@@ -17,6 +17,7 @@ export interface AbilityEffect {
   modifier?: number;
   duration?: number;
   statusId?: string;
+  target?: 'self' | 'enemy';
 }
 
 export interface AbilityCondition {

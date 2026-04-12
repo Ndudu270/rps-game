@@ -291,24 +291,35 @@ export class HubScene implements IScene {
   }
 
   private handleModeClick(modeName: string): void {
-    // Show loading overlay briefly then switch to placeholder
+    // Show loading overlay briefly then switch to appropriate scene
     const loadingMessages: Record<string, string> = {
       'Story Mode': 'Story Loading...',
       'Duels': 'Matchmaking...',
       'Tournaments': 'Tournament Lobby...',
       'Underworld': 'Summoning Boss...',
       'Survival': 'Preparing Arena...',
-      'Training': 'Training Ground...',
+      'Training': 'Entering Training Ground...',
     };
 
-    // For now, just log and show a temporary message
+    // For Training mode, actually switch to the training scene
+    if (modeName === 'Training') {
+      console.log(`Loading ${modeName}: ${loadingMessages[modeName]}`);
+      
+      // Create temporary loading overlay
+      this.showTemporaryLoading(loadingMessages[modeName], () => {
+        this.sceneManager.switchTo('training');
+      });
+      return;
+    }
+
+    // For now, just log and show a temporary message for other modes
     console.log(`Loading ${modeName}: ${loadingMessages[modeName]}`);
     
     // Create temporary loading overlay
     this.showTemporaryLoading(loadingMessages[modeName]);
   }
 
-  private showTemporaryLoading(message: string): void {
+  private showTemporaryLoading(message: string, onComplete?: () => void): void {
     const overlay = new Container();
     overlay.position.set(512, 384);
     
@@ -331,9 +342,12 @@ export class HubScene implements IScene {
 
     this.container.addChild(overlay);
 
-    // Remove after 1.5 seconds
+    // Remove after 1.5 seconds and call callback if provided
     setTimeout(() => {
       this.container.removeChild(overlay);
+      if (onComplete) {
+        onComplete();
+      }
     }, 1500);
   }
 
