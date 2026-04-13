@@ -1,0 +1,112 @@
+[
+  {
+    "id": "ring_minor_hp",
+    "name": "Minor Vitality Ring",
+    "type": "accessory",
+    "rarity": "common",
+    "cost": 30,
+    "sellValue": 15,
+    "modifiers": {
+      "hp": 10,
+      "attack": 0,
+      "defense": 0,
+      "speed": 0,
+      "luck": 1
+    },
+    "equipSlot": "accessory",
+    "stackable": false,
+    "consumable": false,
+    "description": "A simple ring that increases vitality.",
+    "tags": ["accessory", "hp"]
+  },
+  {
+    "id": "potion_health_small",
+    "name": "Small Health Potion",
+    "type": "consumable",
+    "rarity": "common",
+    "cost": 20,
+    "sellValue": 10,
+    "modifiers": {},
+    "equipSlot": null,
+    "stackable": true,
+    "consumable": true,
+    "effect": {
+      "type": "healing",
+      "value": 25
+    },
+    "description": "Restores a small amount of health when consumed.",
+    "tags": ["consumable", "healing", "potion"]
+  },
+  {
+    "id": "amulet_protection",
+    "name": "Amulet of Protection",
+    "type": "accessory",
+    "rarity": "uncommon",
+    "cost": 75,
+    "sellValue": 37,
+    "modifiers": {
+      "hp": 15,
+      "attack": 0,
+      "defense": 3,
+      "speed": 0,
+      "luck": 0
+    },
+    "equipSlot": "accessory",
+    "stackable": false,
+    "consumable": false,
+    "description": "An amulet that provides minor protective enchantment.",
+    "tags": ["accessory", "defense", "magic"]
+  },
+  {
+    "id": "boots_speed",
+    "name": "Boots of Swiftness",
+    "type": "armor",
+    "rarity": "uncommon",
+    "cost": 60,
+    "sellValue": 30,
+    "modifiers": {
+      "hp": 5,
+      "attack": 0,
+      "defense": 2,
+      "speed": 3,
+      "luck": 0
+    },
+    "equipSlot": "feet",
+    "stackable": false,
+    "consumable": false,
+    "description": "Light boots enchanted to increase movement speed.",
+    "tags": ["armor", "feet", "speed"]
+  },
+  {
+    "id": "material_iron_ore",
+    "name": "Iron Ore",
+    "type": "material",
+    "rarity": "common",
+    "cost": 10,
+    "sellValue": 5,
+    "modifiers": {},
+    "equipSlot": null,
+    "stackable": true,
+    "consumable": false,
+    "description": "Raw iron ore used for crafting weapons and armor.",
+    "tags": ["material", "crafting", "ore"]
+  },
+  {
+    "id": "scroll_teleport",
+    "name": "Scroll of Teleportation",
+    "type": "consumable",
+    "rarity": "rare",
+    "cost": 150,
+    "sellValue": 75,
+    "modifiers": {},
+    "equipSlot": null,
+    "stackable": true,
+    "consumable": true,
+    "effect": {
+      "type": "teleport",
+      "range": "hub"
+    },
+    "description": "Teleports the user back to the main hub.",
+    "tags": ["consumable", "scroll", "utility"]
+  }
+]

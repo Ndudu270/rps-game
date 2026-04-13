@@ -1,0 +1,50 @@
+[
+  {
+    "id": "hub_shop",
+    "name": "Hub Shop",
+    "location": "main_hub",
+    "currency": "gold",
+    "availableItemIds": [
+      "sword_basic",
+      "armor_leather",
+      "ring_minor_hp",
+      "potion_health_small",
+      "club",
+      "dagger"
+    ],
+    "unlockRequirements": {
+      "characterCreated": true
+    }
+  },
+  {
+    "id": "arena_shop",
+    "name": "Arena Vendor",
+    "location": "arena",
+    "currency": "gold",
+    "availableItemIds": [
+      "battle_axe",
+      "hand_axe",
+      "boots_speed",
+      "amulet_protection",
+      "material_iron_ore"
+    ],
+    "unlockRequirements": {
+      "trainingClears": 1
+    }
+  },
+  {
+    "id": "magic_shop",
+    "name": "Mystic Emporium",
+    "location": "magic_district",
+    "currency": "gold",
+    "availableItemIds": [
+      "bone_staff",
+      "scroll_teleport",
+      "curved_dagger_ritual",
+      "amulet_protection"
+    ],
+    "unlockRequirements": {
+      "storyChapter": 1
+    }
+  }
+]

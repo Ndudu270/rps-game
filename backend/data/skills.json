@@ -1,0 +1,238 @@
+[
+  {
+    "id": "slash",
+    "name": "Slash",
+    "type": "attack",
+    "category": "basic",
+    "cost": {
+      "actionPoints": 1,
+      "mana": 0,
+      "energy": 0,
+      "health": 0
+    },
+    "cooldown": 0,
+    "effects": [
+      {
+        "type": "damage",
+        "value": 1.0,
+        "scaling": "weapon"
+      }
+    ],
+    "target": "enemy",
+    "range": "melee",
+    "requirements": {
+      "weaponTags": ["sword", "axe", "dagger"],
+      "stanceIds": ["aggressive", "balanced", "defensive"]
+    },
+    "description": "A basic weapon strike.",
+    "tags": ["basic", "attack"]
+  },
+  {
+    "id": "block",
+    "name": "Block",
+    "type": "defense",
+    "category": "basic",
+    "cost": {
+      "actionPoints": 1,
+      "mana": 0,
+      "energy": 0,
+      "health": 0
+    },
+    "cooldown": 0,
+    "effects": [
+      {
+        "type": "damageReduction",
+        "value": 0.5,
+        "duration": 1
+      }
+    ],
+    "target": "self",
+    "range": "self",
+    "requirements": {
+      "weaponTags": ["shield", "sword", "axe"],
+      "stanceIds": ["defensive", "balanced"]
+    },
+    "description": "Raise your weapon or shield to reduce incoming damage.",
+    "tags": ["basic", "defense"]
+  },
+  {
+    "id": "heavy_strike",
+    "name": "Heavy Strike",
+    "type": "attack",
+    "category": "advanced",
+    "cost": {
+      "actionPoints": 2,
+      "mana": 0,
+      "energy": 2,
+      "health": 0
+    },
+    "cooldown": 2,
+    "effects": [
+      {
+        "type": "damage",
+        "value": 1.5,
+        "scaling": "weapon"
+      }
+    ],
+    "target": "enemy",
+    "range": "melee",
+    "requirements": {
+      "weaponTags": ["sword", "axe", "mace"],
+      "stanceIds": ["aggressive", "balanced"]
+    },
+    "description": "A powerful overhead strike that deals increased damage.",
+    "tags": ["attack", "heavy"]
+  },
+  {
+    "id": "fireball",
+    "name": "Fireball",
+    "type": "attack",
+    "category": "spell",
+    "cost": {
+      "actionPoints": 1,
+      "mana": 10,
+      "energy": 0,
+      "health": 0
+    },
+    "cooldown": 1,
+    "effects": [
+      {
+        "type": "damage",
+        "value": 1.2,
+        "scaling": "intelligence"
+      },
+      {
+        "type": "statusEffect",
+        "statusId": "burn",
+        "chance": 0.3
+      }
+    ],
+    "target": "enemy",
+    "range": "ranged",
+    "requirements": {
+      "weaponTags": ["staff", "wand"],
+      "stanceIds": ["aggressive", "balanced"]
+    },
+    "description": "Launch a ball of fire that explodes on impact.",
+    "tags": ["spell", "fire", "aoe"]
+  },
+  {
+    "id": "heal",
+    "name": "Heal",
+    "type": "support",
+    "category": "spell",
+    "cost": {
+      "actionPoints": 1,
+      "mana": 15,
+      "energy": 0,
+      "health": 0
+    },
+    "cooldown": 2,
+    "effects": [
+      {
+        "type": "healing",
+        "value": 25,
+        "scaling": "intelligence"
+      }
+    ],
+    "target": "ally",
+    "range": "medium",
+    "requirements": {
+      "weaponTags": ["staff", "mace", "holy_symbol"],
+      "stanceIds": ["balanced", "defensive"]
+    },
+    "description": "Restore health to an ally.",
+    "tags": ["spell", "healing", "support"]
+  },
+  {
+    "id": "backstab",
+    "name": "Backstab",
+    "type": "attack",
+    "category": "advanced",
+    "cost": {
+      "actionPoints": 1,
+      "mana": 0,
+      "energy": 3,
+      "health": 0
+    },
+    "cooldown": 3,
+    "effects": [
+      {
+        "type": "damage",
+        "value": 2.0,
+        "scaling": "weapon"
+      }
+    ],
+    "target": "enemy",
+    "range": "melee",
+    "requirements": {
+      "weaponTags": ["dagger", "shortsword"],
+      "stanceIds": ["aggressive"],
+      "conditions": ["behind_target"]
+    },
+    "description": "Strike an enemy from behind for massive damage.",
+    "tags": ["attack", "stealth", "critical"]
+  },
+  {
+    "id": "war_cry",
+    "name": "War Cry",
+    "type": "buff",
+    "category": "ability",
+    "cost": {
+      "actionPoints": 1,
+      "mana": 0,
+      "energy": 5,
+      "health": 0
+    },
+    "cooldown": 4,
+    "effects": [
+      {
+        "type": "statBuff",
+        "stat": "attack",
+        "value": 0.15,
+        "duration": 3,
+        "target": "self_and_allies"
+      }
+    ],
+    "target": "area",
+    "range": "short",
+    "requirements": {
+      "weaponTags": ["any"],
+      "stanceIds": ["aggressive", "balanced"]
+    },
+    "description": "Let out a battle cry that increases attack power.",
+    "tags": ["buff", "support", "morale"]
+  },
+  {
+    "id": "aimed_shot",
+    "name": "Aimed Shot",
+    "type": "attack",
+    "category": "advanced",
+    "cost": {
+      "actionPoints": 2,
+      "mana": 0,
+      "energy": 2,
+      "health": 0
+    },
+    "cooldown": 1,
+    "effects": [
+      {
+        "type": "damage",
+        "value": 1.3,
+        "scaling": "weapon"
+      },
+      {
+        "type": "critBonus",
+        "value": 0.2
+      }
+    ],
+    "target": "enemy",
+    "range": "long",
+    "requirements": {
+      "weaponTags": ["bow", "crossbow"],
+      "stanceIds": ["balanced", "defensive"]
+    },
+    "description": "Take careful aim for a precise, high-damage shot.",
+    "tags": ["attack", "ranged", "precision"]
+  }
+]

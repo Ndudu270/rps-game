@@ -1,0 +1,122 @@
+[
+  {
+    "id": "bleed",
+    "name": "Bleed",
+    "description": "Deals damage over time.",
+    "type": "debuff",
+    "duration": 3,
+    "stacking": "refresh",
+    "maxStacks": 3,
+    "effects": [
+      {
+        "type": "damageOverTime",
+        "value": 0.05,
+        "base": "maxHp"
+      }
+    ],
+    "cure": ["cleanse"],
+    "tags": ["dot", "damage"]
+  },
+  {
+    "id": "burn",
+    "name": "Burn",
+    "description": "Deals fire damage over time and reduces attack power.",
+    "type": "debuff",
+    "duration": 2,
+    "stacking": "stack",
+    "maxStacks": 5,
+    "effects": [
+      {
+        "type": "damageOverTime",
+        "value": 0.04,
+        "base": "maxHp"
+      },
+      {
+        "type": "statDebuff",
+        "stat": "attack",
+        "value": -0.05
+      }
+    ],
+    "cure": ["cleanse", "water"],
+    "tags": ["dot", "fire", "debuff"]
+  },
+  {
+    "id": "stun",
+    "name": "Stun",
+    "description": "Prevents the target from taking any actions.",
+    "type": "crowd_control",
+    "duration": 1,
+    "stacking": "refresh",
+    "maxStacks": 1,
+    "effects": [
+      {
+        "type": "disableActions",
+        "value": 1
+      }
+    ],
+    "cure": ["cleanse", "freedom"],
+    "tags": ["cc", "disable", "control"]
+  },
+  {
+    "id": "poison",
+    "name": "Poison",
+    "description": "Deals nature damage over time and reduces healing received.",
+    "type": "debuff",
+    "duration": 4,
+    "stacking": "stack",
+    "maxStacks": 4,
+    "effects": [
+      {
+        "type": "damageOverTime",
+        "value": 0.03,
+        "base": "maxHp"
+      },
+      {
+        "type": "healingReduction",
+        "value": 0.25
+      }
+    ],
+    "cure": ["cleanse", "antidote"],
+    "tags": ["dot", "nature", "debuff"]
+  },
+  {
+    "id": "haste",
+    "name": "Haste",
+    "description": "Increases action speed and movement speed.",
+    "type": "buff",
+    "duration": 3,
+    "stacking": "refresh",
+    "maxStacks": 1,
+    "effects": [
+      {
+        "type": "statBuff",
+        "stat": "speed",
+        "value": 0.15
+      },
+      {
+        "type": "actionPointBonus",
+        "value": 1
+      }
+    ],
+    "cure": ["dispel"],
+    "tags": ["buff", "speed", "utility"]
+  },
+  {
+    "id": "shield",
+    "name": "Shield Barrier",
+    "description": "Absorbs a fixed amount of damage.",
+    "type": "buff",
+    "duration": 2,
+    "stacking": "refresh",
+    "maxStacks": 1,
+    "effects": [
+      {
+        "type": "damageAbsorb",
+        "value": 20,
+        "scaling": "intelligence"
+      }
+    ],
+    "cure": ["dispel"],
+    "tags": ["buff", "defense", "absorb"]
+  }
+]

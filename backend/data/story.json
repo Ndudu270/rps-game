@@ -1,0 +1,146 @@
+{
+  "chapters": [
+    {
+      "id": 0,
+      "title": "Prologue",
+      "description": "Begin your journey and learn the basics.",
+      "nodes": [
+        {
+          "id": 0,
+          "title": "Character Creation",
+          "type": "setup",
+          "description": "Create your character and choose your path.",
+          "nextNode": 1
+        },
+        {
+          "id": 1,
+          "title": "The Awakening",
+          "type": "story",
+          "description": "You awaken in the hub with no memory of how you got here.",
+          "nextNode": 2
+        },
+        {
+          "id": 2,
+          "title": "First Steps",
+          "type": "tutorial",
+          "description": "Learn the basics of movement and interaction.",
+          "nextNode": 3,
+          "rewards": {
+            "gold": 25,
+            "items": ["potion_health_small"]
+          }
+        },
+        {
+          "id": 3,
+          "title": "Combat Training",
+          "type": "combat",
+          "description": "Face your first opponent in the training arena.",
+          "enemyId": "training_dummy",
+          "nextNode": 4
+        },
+        {
+          "id": 4,
+          "title": "Chapter Complete",
+          "type": "milestone",
+          "description": "You have completed the prologue. The adventure begins!",
+          "nextChapter": 1,
+          "nextNode": 0,
+          "rewards": {
+            "gold": 50,
+            "achievements": ["first_steps"]
+          }
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "title": "The Dark Forest",
+      "description": "Venture into the mysterious forest surrounding the hub.",
+      "nodes": [
+        {
+          "id": 0,
+          "title": "Into the Woods",
+          "type": "story",
+          "description": "Strange creatures have been spotted in the forest.",
+          "nextNode": 1
+        },
+        {
+          "id": 1,
+          "title": "Goblin Ambush",
+          "type": "combat",
+          "description": "You are ambushed by goblin scouts!",
+          "enemyId": "goblin_scout",
+          "nextNode": 2
+        },
+        {
+          "id": 2,
+          "title": "The Old Hermit",
+          "type": "npc_encounter",
+          "description": "Meet a mysterious hermit who offers guidance.",
+          "npcId": "hermit",
+          "nextNode": 3
+        },
+        {
+          "id": 3,
+          "title": "Skeleton Crypt",
+          "type": "combat",
+          "description": "Ancient undead guard a forgotten crypt.",
+          "enemyId": "skeleton_soldier",
+          "nextNode": 4
+        },
+        {
+          "id": 4,
+          "title": "Forest's Heart",
+          "type": "boss",
+          "description": "Confront the corrupted guardian of the forest.",
+          "enemyId": "orc_warrior",
+          "nextChapter": 2,
+          "nextNode": 0,
+          "rewards": {
+            "gold": 100,
+            "items": ["amulet_protection"]
+          }
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "The Shadow Realm",
+      "description": "Enter a dark dimension where reality bends.",
+      "nodes": [
+        {
+          "id": 0,
+          "title": "Crossing Over",
+          "type": "story",
+          "description": "Find the portal to the Shadow Realm.",
+          "nextNode": 1
+        },
+        {
+          "id": 1,
+          "title": "Shadows Everywhere",
+          "type": "combat",
+          "description": "Shadow creatures stalk these twisted lands.",
+          "enemyId": "dark_mage",
+          "nextNode": 2
+        },
+        {
+          "id": 2,
+          "title": "The Hidden Truth",
+          "type": "story",
+          "description": "Discover the truth behind your arrival in this world.",
+          "nextNode": 3,
+          "secret": true
+        },
+        {
+          "id": 3,
+          "title": "Escape",
+          "type": "combat",
+          "description": "Fight your way back to the material plane.",
+          "enemyId": "dark_mage",
+          "nextChapter": 3,
+          "nextNode": 0
+        }
+      ]
+    }
+  ]
+}

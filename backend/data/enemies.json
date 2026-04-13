@@ -1,0 +1,107 @@
+[
+  {
+    "id": "training_dummy",
+    "name": "Training Dummy",
+    "type": "dummy",
+    "stats": {
+      "hp": 100,
+      "attack": 5,
+      "defense": 2,
+      "speed": 1
+    },
+    "weaponId": "dummy_fist",
+    "skills": ["block"],
+    "stances": ["balanced"],
+    "behavior": {
+      "type": "simple_ai"
+    }
+  },
+  {
+    "id": "goblin_scout",
+    "name": "Goblin Scout",
+    "type": "humanoid",
+    "stats": {
+      "hp": 40,
+      "attack": 8,
+      "defense": 3,
+      "speed": 6
+    },
+    "weaponId": "dagger",
+    "skills": ["slash", "backstab"],
+    "stances": ["aggressive", "balanced"],
+    "behavior": {
+      "type": "aggressive_ai"
+    },
+    "rewards": {
+      "gold": 10,
+      "xp": 15
+    },
+    "tags": ["weak", "melee", "stealth"]
+  },
+  {
+    "id": "orc_warrior",
+    "name": "Orc Warrior",
+    "type": "humanoid",
+    "stats": {
+      "hp": 80,
+      "attack": 12,
+      "defense": 6,
+      "speed": 4
+    },
+    "weaponId": "battle_axe",
+    "skills": ["slash", "heavy_strike", "war_cry"],
+    "stances": ["aggressive", "balanced"],
+    "behavior": {
+      "type": "tactical_ai"
+    },
+    "rewards": {
+      "gold": 25,
+      "xp": 35
+    },
+    "tags": ["medium", "melee", "brute"]
+  },
+  {
+    "id": "skeleton_soldier",
+    "name": "Skeleton Soldier",
+    "type": "undead",
+    "stats": {
+      "hp": 50,
+      "attack": 9,
+      "defense": 4,
+      "speed": 5
+    },
+    "weaponId": "sword_basic",
+    "skills": ["slash", "block"],
+    "stances": ["balanced", "defensive"],
+    "behavior": {
+      "type": "mindless_ai"
+    },
+    "rewards": {
+      "gold": 15,
+      "xp": 20
+    },
+    "tags": ["undead", "melee", "weak_to_blunt"]
+  },
+  {
+    "id": "dark_mage",
+    "name": "Dark Mage",
+    "type": "humanoid",
+    "stats": {
+      "hp": 45,
+      "attack": 15,
+      "defense": 3,
+      "speed": 7
+    },
+    "weaponId": "bone_staff",
+    "skills": ["fireball", "slash"],
+    "stances": ["aggressive", "balanced"],
+    "behavior": {
+      "type": "ranged_ai"
+    },
+    "rewards": {
+      "gold": 30,
+      "xp": 40
+    },
+    "tags": ["caster", "ranged", "magic"]
+  }
+]
