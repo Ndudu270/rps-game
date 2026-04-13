@@ -1,1 +1,1 @@
-node_modules/
+Nothing needs to be added to .gitignore since the changes only include TypeScript source files (.ts) which are not build artifacts, dependencies, or temporary files.
