@@ -1,79 +1,23 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "required": [
-    "id",
-    "name",
-    "description",
-    "statModifiers",
-    "derivedModifiers",
-    "passives",
-    "tags"
-  ],
-  "properties": {
-    "id": {
-      "type": "string",
-      "description": "Unique race identifier"
+  "roundActionPoints": 2,
+  "minimumDamage": 1,
+
+  "stances": {
+    "aggressive": {
+      "damageDealt": 1.25,
+      "damageTaken": 1.15
     },
-    "name": {
-      "type": "string",
-      "description": "Display name of the race"
+    "balanced": {
+      "damageDealt": 1.0,
+      "damageTaken": 1.0
     },
-    "description": {
-      "type": "string",
-      "description": "Flavor or mechanical description"
-    },
-    "statModifiers": {
-      "type": "object",
-      "required": [
-        "strength",
-        "agility",
-        "intelligence",
-        "charisma",
-        "endurance",
-        "perception",
-        "luck"
-      ],
-      "properties": {
-        "strength": { "type": "number" },
-        "agility": { "type": "number" },
-        "intelligence": { "type": "number" },
-        "charisma": { "type": "number" },
-        "endurance": { "type": "number" },
-        "perception": { "type": "number" },
-        "luck": { "type": "number" }
-      },
-      "additionalProperties": false
-    },
-    "derivedModifiers": {
-      "type": "object",
-      "required": ["hp", "attack", "defense", "speed"],
-      "properties": {
-        "hp": { "type": "number" },
-        "attack": { "type": "number" },
-        "defense": { "type": "number" },
-        "speed": { "type": "number" }
-      },
-      "additionalProperties": false
-    },
-    "passives": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "required": ["id", "name", "effect"],
-        "properties": {
-          "id": { "type": "string" },
-          "name": { "type": "string" },
-          "effect": { "type": "string" }
-        },
-        "additionalProperties": false
-      }
-    },
-    "tags": {
-      "type": "array",
-      "items": { "type": "string" },
-      "uniqueItems": true
+    "defensive": {
+      "damageDealt": 0.85,
+      "damageTaken": 0.7
     }
   },
-  "additionalProperties": false
+
+  "block": {
+    "damageReduction": 0.5
+  }
 }
