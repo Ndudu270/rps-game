@@ -20,8 +20,8 @@
       "critChance": 0.05,
       "blockPower": 3
     },
-    "allowedClasses": ["warrior", "paladin", "ranger"],
-    "allowedRaces": ["human", "elf", "dwarf", "orc", "halfling", "gnome", "tiefling"],
+    "allowedClasses": ["warrior", "paladin", "archer"],
+    "allowedRaces": ["human", "elf", "dwarf", "orc", "halfling", "gnome", "demon"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -52,8 +52,8 @@
       "critChance": 0.04,
       "blockPower": 4
     },
-    "allowedClasses": ["warrior", "barbarian", "paladin"],
-    "allowedRaces": ["human", "elf", "dwarf", "orc", "halfling", "gnome", "tiefling"],
+    "allowedClasses": ["warrior", "paladin"],
+    "allowedRaces": ["human", "elf", "dwarf", "orc", "halfling", "gnome", "demon"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -85,7 +85,7 @@
       "blockPower": 0
     },
     "allowedClasses": ["rogue", "assassin", "warrior"],
-    "allowedRaces": ["human", "elf", "dwarf", "orc", "halfling", "gnome", "tiefling"],
+    "allowedRaces": ["human", "elf", "dwarf", "orc", "halfling", "gnome", "demon"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -116,8 +116,8 @@
       "critChance": 0.08,
       "blockPower": 0
     },
-    "allowedClasses": ["rogue", "ranger", "assassin"],
-    "allowedRaces": ["human", "elf", "halfling", "gnome", "tiefling"],
+    "allowedClasses": ["rogue", "archer", "assassin"],
+    "allowedRaces": ["human", "elf", "halfling", "gnome", "demon"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -148,8 +148,8 @@
       "critChance": 0.05,
       "blockPower": 5
     },
-    "allowedClasses": ["mage", "cleric", "druid", "monk"],
-    "allowedRaces": ["human", "elf", "dwarf", "orc", "halfling", "gnome", "tiefling"],
+    "allowedClasses": ["mage", "cleric", "druid"],
+    "allowedRaces": ["human", "elf", "dwarf", "orc", "halfling", "gnome", "demon"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -180,8 +180,8 @@
       "critChance": 0.03,
       "blockPower": 2
     },
-    "allowedClasses": ["warrior", "barbarian", "druid", "rogue"],
-    "allowedRaces": ["human", "elf", "dwarf", "orc", "halfling", "gnome", "tiefling"],
+    "allowedClasses": ["warrior", "druid", "rogue"],
+    "allowedRaces": ["human", "elf", "dwarf", "orc", "halfling", "gnome", "demon"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -212,8 +212,8 @@
       "critChance": 0.08,
       "blockPower": 0
     },
-    "allowedClasses": ["warrior", "ranger", "rogue"],
-    "allowedRaces": ["human", "elf", "dwarf", "orc", "halfling", "gnome", "tiefling"],
+    "allowedClasses": ["warrior", "archer", "rogue"],
+    "allowedRaces": ["human", "elf", "dwarf", "orc", "halfling", "gnome", "demon"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -244,8 +244,8 @@
       "critChance": 0.12,
       "blockPower": 1
     },
-    "allowedClasses": ["rogue", "assassin", "warlock", "mage"],
-    "allowedRaces": ["human", "elf", "tiefling", "orc"],
+    "allowedClasses": ["rogue", "assassin", "necromancer", "mage"],
+    "allowedRaces": ["human", "elf", "demon", "orc"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -277,7 +277,7 @@
       "blockPower": 1
     },
     "allowedClasses": ["warrior", "rogue", "assassin", "mage", "cleric"],
-    "allowedRaces": ["human", "elf", "dwarf", "orc", "halfling", "gnome", "tiefling"],
+    "allowedRaces": ["human", "elf", "dwarf", "orc", "halfling", "gnome", "demon"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -308,8 +308,8 @@
       "critChance": 0.07,
       "blockPower": 0
     },
-    "allowedClasses": ["rogue", "ranger", "warrior"],
-    "allowedRaces": ["human", "elf", "halfling", "gnome", "tiefling"],
+    "allowedClasses": ["rogue", "archer", "warrior"],
+    "allowedRaces": ["human", "elf", "halfling", "gnome", "demon"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -340,8 +340,8 @@
       "critChance": 0.05,
       "blockPower": 3
     },
-    "allowedClasses": ["warrior", "paladin", "ranger"],
-    "allowedRaces": ["human", "elf", "orc", "tiefling"],
+    "allowedClasses": ["warrior", "paladin", "archer"],
+    "allowedRaces": ["human", "elf", "orc", "demon"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -373,7 +373,7 @@
       "blockPower": 2
     },
     "allowedClasses": ["warrior", "paladin", "cleric"],
-    "allowedRaces": ["human", "elf", "dwarf", "orc", "tiefling"],
+    "allowedRaces": ["human", "elf", "dwarf", "orc", "demon"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -404,7 +404,7 @@
       "critChance": 0.07,
       "blockPower": 6
     },
-    "allowedClasses": ["warrior", "barbarian", "paladin"],
+    "allowedClasses": ["warrior", "paladin"],
     "allowedRaces": ["human", "elf", "orc", "dwarf"],
     "durability": {
       "enabled": false,
@@ -437,7 +437,7 @@
       "blockPower": 0
     },
     "allowedClasses": ["rogue", "assassin"],
-    "allowedRaces": ["human", "elf", "halfling", "gnome", "tiefling"],
+    "allowedRaces": ["human", "elf", "halfling", "gnome", "demon"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -468,8 +468,8 @@
       "critChance": 0.08,
       "blockPower": 4
     },
-    "allowedClasses": ["warrior", "barbarian", "paladin"],
-    "allowedRaces": ["human", "orc", "dwarf", "tiefling"],
+    "allowedClasses": ["warrior", "paladin"],
+    "allowedRaces": ["human", "orc", "dwarf", "demon"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -500,8 +500,8 @@
       "critChance": 0.06,
       "blockPower": 5
     },
-    "allowedClasses": ["warrior", "paladin", "barbarian"],
-    "allowedRaces": ["human", "elf", "orc", "dwarf", "tiefling"],
+    "allowedClasses": ["warrior", "paladin"],
+    "allowedRaces": ["human", "elf", "orc", "dwarf", "demon"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -532,8 +532,8 @@
       "critChance": 0.05,
       "blockPower": 2
     },
-    "allowedClasses": ["warrior", "barbarian", "ranger", "rogue"],
-    "allowedRaces": ["human", "elf", "dwarf", "orc", "halfling", "gnome", "tiefling"],
+    "allowedClasses": ["warrior", "archer", "rogue"],
+    "allowedRaces": ["human", "elf", "dwarf", "orc", "halfling", "gnome", "demon"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -564,8 +564,8 @@
       "critChance": 0.08,
       "blockPower": 0
     },
-    "allowedClasses": ["rogue", "ranger", "assassin"],
-    "allowedRaces": ["human", "elf", "halfling", "gnome", "tiefling"],
+    "allowedClasses": ["rogue", "archer", "assassin"],
+    "allowedRaces": ["human", "elf", "halfling", "gnome", "demon"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -596,8 +596,8 @@
       "critChance": 0.05,
       "blockPower": 1
     },
-    "allowedClasses": ["warrior", "barbarian", "ranger", "rogue"],
-    "allowedRaces": ["human", "elf", "dwarf", "orc", "halfling", "gnome", "tiefling"],
+    "allowedClasses": ["warrior", "archer", "rogue"],
+    "allowedRaces": ["human", "elf", "dwarf", "orc", "halfling", "gnome", "demon"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -629,7 +629,7 @@
       "blockPower": 3
     },
     "allowedClasses": ["warrior", "paladin", "cleric"],
-    "allowedRaces": ["human", "dwarf", "orc", "tiefling"],
+    "allowedRaces": ["human", "dwarf", "orc", "demon"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -660,8 +660,8 @@
       "critChance": 0.08,
       "blockPower": 1
     },
-    "allowedClasses": ["warrior", "rogue", "ranger", "assassin"],
-    "allowedRaces": ["human", "elf", "dwarf", "orc", "halfling", "gnome", "tiefling"],
+    "allowedClasses": ["warrior", "rogue", "archer", "assassin"],
+    "allowedRaces": ["human", "elf", "dwarf", "orc", "halfling", "gnome", "demon"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -692,8 +692,8 @@
       "critChance": 0.05,
       "blockPower": 2
     },
-    "allowedClasses": ["warrior", "ranger", "barbarian"],
-    "allowedRaces": ["human", "elf", "orc", "tiefling"],
+    "allowedClasses": ["warrior", "archer"],
+    "allowedRaces": ["human", "elf", "orc", "demon"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -724,8 +724,8 @@
       "critChance": 0.09,
       "blockPower": 2
     },
-    "allowedClasses": ["warrior", "rogue", "assassin", "monk"],
-    "allowedRaces": ["human", "elf", "dwarf", "orc", "tiefling"],
+    "allowedClasses": ["warrior", "rogue", "assassin"],
+    "allowedRaces": ["human", "elf", "dwarf", "orc", "demon"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -756,8 +756,8 @@
       "critChance": 0.07,
       "blockPower": 2
     },
-    "allowedClasses": ["warrior", "paladin", "cavalier"],
-    "allowedRaces": ["human", "elf", "dwarf", "orc", "tiefling"],
+    "allowedClasses": ["warrior", "paladin"],
+    "allowedRaces": ["human", "elf", "dwarf", "orc", "demon"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -788,8 +788,8 @@
       "critChance": 0.06,
       "blockPower": 0
     },
-    "allowedClasses": ["warrior", "ranger", "rogue", "cleric"],
-    "allowedRaces": ["human", "elf", "dwarf", "orc", "halfling", "gnome", "tiefling"],
+    "allowedClasses": ["warrior", "archer", "rogue", "cleric"],
+    "allowedRaces": ["human", "elf", "dwarf", "orc", "halfling", "gnome", "demon"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -820,8 +820,8 @@
       "critChance": 0.07,
       "blockPower": 0
     },
-    "allowedClasses": ["ranger", "warrior", "rogue"],
-    "allowedRaces": ["human", "elf", "orc", "tiefling"],
+    "allowedClasses": ["archer", "warrior", "rogue"],
+    "allowedRaces": ["human", "elf", "orc", "demon"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -852,8 +852,8 @@
       "critChance": 0.05,
       "blockPower": 4
     },
-    "allowedClasses": ["warrior", "paladin", "ranger", "rogue"],
-    "allowedRaces": ["human", "elf", "dwarf", "orc", "tiefling"],
+    "allowedClasses": ["warrior", "paladin", "archer", "rogue"],
+    "allowedRaces": ["human", "elf", "dwarf", "orc", "demon"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -885,7 +885,7 @@
       "blockPower": 3
     },
     "allowedClasses": ["warrior", "paladin", "cleric"],
-    "allowedRaces": ["human", "elf", "dwarf", "orc", "tiefling"],
+    "allowedRaces": ["human", "elf", "dwarf", "orc", "demon"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -916,8 +916,8 @@
       "critChance": 0.05,
       "blockPower": 4
     },
-    "allowedClasses": ["warrior", "barbarian", "paladin"],
-    "allowedRaces": ["human", "dwarf", "orc", "tiefling"],
+    "allowedClasses": ["warrior", "paladin"],
+    "allowedRaces": ["human", "dwarf", "orc", "demon"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -949,7 +949,7 @@
       "blockPower": 3
     },
     "allowedClasses": ["warrior", "paladin", "cleric"],
-    "allowedRaces": ["human", "elf", "dwarf", "orc", "tiefling"],
+    "allowedRaces": ["human", "elf", "dwarf", "orc", "demon"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -980,8 +980,8 @@
       "critChance": 0.06,
       "blockPower": 2
     },
-    "allowedClasses": ["warrior", "paladin", "barbarian"],
-    "allowedRaces": ["human", "elf", "dwarf", "orc", "tiefling"],
+    "allowedClasses": ["warrior", "paladin"],
+    "allowedRaces": ["human", "elf", "dwarf", "orc", "demon"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -1012,8 +1012,8 @@
       "critChance": 0.10,
       "blockPower": 0
     },
-    "allowedClasses": ["rogue", "assassin", "ranger"],
-    "allowedRaces": ["human", "elf", "halfling", "gnome", "tiefling"],
+    "allowedClasses": ["rogue", "assassin", "archer"],
+    "allowedRaces": ["human", "elf", "halfling", "gnome", "demon"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -1044,8 +1044,8 @@
       "critChance": 0.05,
       "blockPower": 6
     },
-    "allowedClasses": ["monk", "mage", "cleric", "druid", "warrior"],
-    "allowedRaces": ["human", "elf", "dwarf", "orc", "halfling", "gnome", "tiefling"],
+    "allowedClasses": ["mage", "cleric", "druid", "warrior"],
+    "allowedRaces": ["human", "elf", "dwarf", "orc", "halfling", "gnome", "demon"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -1076,8 +1076,8 @@
       "critChance": 0.08,
       "blockPower": 3
     },
-    "allowedClasses": ["rogue", "warrior", "assassin", "duelist"],
-    "allowedRaces": ["human", "elf", "halfling", "tiefling"],
+    "allowedClasses": ["rogue", "warrior", "assassin"],
+    "allowedRaces": ["human", "elf", "halfling", "demon"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -1108,8 +1108,8 @@
       "critChance": 0.10,
       "blockPower": 1
     },
-    "allowedClasses": ["mage", "warlock", "cleric", "rogue"],
-    "allowedRaces": ["human", "elf", "tiefling", "gnome"],
+    "allowedClasses": ["mage", "necromancer", "cleric", "rogue"],
+    "allowedRaces": ["human", "elf", "demon", "gnome"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -1140,8 +1140,8 @@
       "critChance": 0.09,
       "blockPower": 2
     },
-    "allowedClasses": ["warrior", "barbarian", "druid", "warlock"],
-    "allowedRaces": ["human", "elf", "orc", "tiefling"],
+    "allowedClasses": ["warrior", "druid", "necromancer"],
+    "allowedRaces": ["human", "elf", "orc", "demon"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -1172,8 +1172,8 @@
       "critChance": 0.07,
       "blockPower": 2
     },
-    "allowedClasses": ["warrior", "rogue", "ranger", "duelist"],
-    "allowedRaces": ["human", "elf", "orc", "tiefling"],
+    "allowedClasses": ["warrior", "rogue", "archer"],
+    "allowedRaces": ["human", "elf", "orc", "demon"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -1204,8 +1204,8 @@
       "critChance": 0.06,
       "blockPower": 0
     },
-    "allowedClasses": ["ranger", "rogue", "warrior"],
-    "allowedRaces": ["human", "elf", "halfling", "gnome", "tiefling"],
+    "allowedClasses": ["archer", "rogue", "warrior"],
+    "allowedRaces": ["human", "elf", "halfling", "gnome", "demon"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -1236,8 +1236,8 @@
       "critChance": 0.06,
       "blockPower": 3
     },
-    "allowedClasses": ["warrior", "rogue", "assassin", "ranger"],
-    "allowedRaces": ["human", "elf", "dwarf", "orc", "halfling", "gnome", "tiefling"],
+    "allowedClasses": ["warrior", "rogue", "assassin", "archer"],
+    "allowedRaces": ["human", "elf", "dwarf", "orc", "halfling", "gnome", "demon"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -1269,7 +1269,7 @@
       "blockPower": 1
     },
     "allowedClasses": ["druid", "rogue", "cleric", "warrior"],
-    "allowedRaces": ["human", "elf", "halfling", "gnome", "tiefling"],
+    "allowedRaces": ["human", "elf", "halfling", "gnome", "demon"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -1300,7 +1300,7 @@
       "critChance": 0.04,
       "blockPower": 0
     },
-    "allowedClasses": ["ranger", "rogue", "warrior", "cleric"],
+    "allowedClasses": ["archer", "rogue", "warrior", "cleric"],
     "allowedRaces": ["human", "elf", "halfling", "gnome", "dwarf"],
     "durability": {
       "enabled": false,
@@ -1332,8 +1332,8 @@
       "critChance": 0.05,
       "blockPower": 3
     },
-    "allowedClasses": ["warrior", "paladin", "ranger", "barbarian"],
-    "allowedRaces": ["human", "elf", "dwarf", "orc", "halfling", "gnome", "tiefling"],
+    "allowedClasses": ["warrior", "paladin", "archer"],
+    "allowedRaces": ["human", "elf", "dwarf", "orc", "halfling", "gnome", "demon"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -1364,8 +1364,8 @@
       "critChance": 0.06,
       "blockPower": 2
     },
-    "allowedClasses": ["warrior", "barbarian", "druid"],
-    "allowedRaces": ["human", "orc", "dwarf", "tiefling"],
+    "allowedClasses": ["warrior", "druid"],
+    "allowedRaces": ["human", "orc", "dwarf", "demon"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -1396,8 +1396,8 @@
       "critChance": 0.12,
       "blockPower": 0
     },
-    "allowedClasses": ["rogue", "assassin", "ranger"],
-    "allowedRaces": ["human", "elf", "tiefling", "halfling"],
+    "allowedClasses": ["rogue", "assassin", "archer"],
+    "allowedRaces": ["human", "elf", "demon", "halfling"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -1429,7 +1429,7 @@
       "blockPower": 0
     },
     "allowedClasses": ["rogue", "assassin"],
-    "allowedRaces": ["human", "elf", "halfling", "gnome", "tiefling"],
+    "allowedRaces": ["human", "elf", "halfling", "gnome", "demon"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -1460,8 +1460,8 @@
       "critChance": 0.06,
       "blockPower": 1
     },
-    "allowedClasses": ["warrior", "barbarian", "ranger", "rogue"],
-    "allowedRaces": ["human", "elf", "dwarf", "orc", "halfling", "gnome", "tiefling"],
+    "allowedClasses": ["warrior", "archer", "rogue"],
+    "allowedRaces": ["human", "elf", "dwarf", "orc", "halfling", "gnome", "demon"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -1492,8 +1492,8 @@
       "critChance": 0.09,
       "blockPower": 0
     },
-    "allowedClasses": ["rogue", "assassin", "ranger"],
-    "allowedRaces": ["human", "elf", "halfling", "gnome", "tiefling"],
+    "allowedClasses": ["rogue", "assassin", "archer"],
+    "allowedRaces": ["human", "elf", "halfling", "gnome", "demon"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -1524,8 +1524,8 @@
       "critChance": 0.08,
       "blockPower": 0
     },
-    "allowedClasses": ["mage", "warlock", "sorcerer", "cleric"],
-    "allowedRaces": ["human", "elf", "gnome", "tiefling"],
+    "allowedClasses": ["mage", "necromancer", "cleric"],
+    "allowedRaces": ["human", "elf", "gnome", "demon"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -1557,7 +1557,7 @@
       "blockPower": 4
     },
     "allowedClasses": ["warrior", "paladin", "cleric"],
-    "allowedRaces": ["human", "dwarf", "orc", "tiefling"],
+    "allowedRaces": ["human", "dwarf", "orc", "demon"],
     "durability": {
       "enabled": false,
       "max": 0
@@ -1588,8 +1588,8 @@
       "critChance": 0.05,
       "blockPower": 0
     },
-    "allowedClasses": ["rogue", "ranger", "assassin"],
-    "allowedRaces": ["human", "elf", "halfling", "tiefling"],
+    "allowedClasses": ["rogue", "archer", "assassin"],
+    "allowedRaces": ["human", "elf", "halfling", "demon"],
     "durability": {
       "enabled": false,
       "max": 0
