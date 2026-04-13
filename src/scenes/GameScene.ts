@@ -126,5 +126,25 @@ export class GameScene implements IScene {
     buttonContainer.on('pointerleave', () => { bg.clear(); bg.roundRect(-width / 2, -height / 2, width, height, 10); bg.fill({ color: 0x3a3a5e }); bg.stroke({ width: 2, color: 0x5555aa }); });
     buttonContainer.on('pointerup', () => { this.sceneManager.switchTo('mainMenu'); });
     this.container.addChild(buttonContainer);
+    
+    // Character button
+    const charBtnContainer = new Container();
+    charBtnContainer.position.set(512, 670);
+    const charBg = new Graphics();
+    const charWidth = 180, charHeight = 45;
+    charBg.roundRect(-charWidth / 2, -charHeight / 2, charWidth, charHeight, 10);
+    charBg.fill({ color: 0x2a4a3e });
+    charBg.stroke({ width: 2, color: 0x44aa88 });
+    const charText = new Text({ text: 'Character', style: new TextStyle({ fontFamily: 'Arial', fontSize: 18, fontWeight: 'bold', fill: 0xffffff }) });
+    charText.anchor.set(0.5);
+    charBtnContainer.addChild(charBg);
+    charBtnContainer.addChild(charText);
+    (charBtnContainer as any).bg = charBg;
+    charBtnContainer.eventMode = 'static';
+    charBtnContainer.cursor = 'pointer';
+    charBtnContainer.on('pointerenter', () => { charBg.clear(); charBg.roundRect(-charWidth / 2, -charHeight / 2, charWidth, charHeight, 10); charBg.fill({ color: 0x3a6a5e }); charBg.stroke({ width: 2, color: 0x66ccaa }); });
+    charBtnContainer.on('pointerleave', () => { charBg.clear(); charBg.roundRect(-charWidth / 2, -charHeight / 2, charWidth, charHeight, 10); charBg.fill({ color: 0x2a4a3e }); charBg.stroke({ width: 2, color: 0x44aa88 }); });
+    charBtnContainer.on('pointerup', () => { this.sceneManager.switchTo('character'); });
+    this.container.addChild(charBtnContainer);
   }
 }
