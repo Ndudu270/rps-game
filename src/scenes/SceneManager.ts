@@ -1,6 +1,6 @@
 import { Container, Graphics, Text, TextStyle } from 'pixi.js';
 
-export type SceneName = 'mainMenu' | 'settings' | 'game' | 'characterCreation' | 'hub' | 'inventory' | 'shop' | 'HubScene' | 'character';
+export type SceneName = 'mainMenu' | 'settings' | 'game' | 'characterCreation' | 'hub' | 'inventory' | 'shop' | 'character' | 'storyMode' | 'towerMode' | 'survivalMode' | 'trainingMode' | 'duelMode';
 
 export interface IScene {
   container: Container;

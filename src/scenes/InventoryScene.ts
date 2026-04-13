@@ -303,7 +303,7 @@ export class InventoryScene implements IScene {
     });
     
     button.on('pointerup', () => {
-      this.sceneManager.switchScene('HubScene');
+      this.sceneManager.switchScene('hub');
     });
     
     this.container.addChild(button);

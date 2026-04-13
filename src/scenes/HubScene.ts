@@ -178,13 +178,13 @@ export class HubScene implements IScene {
   }
 
   private createModeButtons(): void {
+    // New RPG structure modes - matching the new game design
     const modes = [
-      { name: 'Story Mode', desc: 'Main Campaign', color: 0x8b0000, glow: 0xff4444 },
-      { name: 'Duels', desc: 'PvP Matchmaking', color: 0x4444aa, glow: 0x6666ff },
-      { name: 'Tournaments', desc: 'Bracket Battles', color: 0xaa8800, glow: 0xffcc00 },
-      { name: 'Underworld', desc: 'Boss Raids', color: 0x440044, glow: 0xff00ff },
-      { name: 'Survival', desc: 'Endless Waves', color: 0x006644, glow: 0x00ff88 },
-      { name: 'Training', desc: 'Practice Mode', color: 0x446666, glow: 0x88cccc },
+      { name: 'Story Mode', desc: '10-Part Campaign', color: 0x8b0000, glow: 0xff4444, scene: 'storyMode' },
+      { name: 'Tower Mode', desc: 'Climb 100 Floors', color: 0x6633aa, glow: 0xaa66ff, scene: 'towerMode' },
+      { name: 'Survival', desc: 'Endless Waves', color: 0x006644, glow: 0x00ff88, scene: 'survivalMode' },
+      { name: 'Training', desc: 'Practice Combat', color: 0x446666, glow: 0x88cccc, scene: 'trainingMode' },
+      { name: 'Duels', desc: 'PvP Battles', color: 0x4444aa, glow: 0x6666ff, scene: 'duelMode' },
     ];
 
     const startY = 180;

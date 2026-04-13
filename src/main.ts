@@ -1,4 +1,4 @@
-// Main entry point for RPS WAR
+// Main entry point for RPS WAR - New RPG Structure
 import { Application } from 'pixi.js';
 import { SceneManager } from './scenes/SceneManager';
 import { MainMenuScene } from './scenes/MainMenuScene';
@@ -28,7 +28,7 @@ async function init() {
   // Initialize scene manager
   sceneManager = new SceneManager(app.stage);
   
-  // Register scenes
+  // Register scenes - Core scenes
   sceneManager.register('mainMenu', () => new MainMenuScene(sceneManager));
   sceneManager.register('settings', () => new SettingsScene(sceneManager));
   sceneManager.register('game', () => new GameScene(sceneManager));
@@ -37,6 +37,9 @@ async function init() {
   sceneManager.register('inventory', () => new InventoryScene(sceneManager));
   sceneManager.register('shop', () => new ShopScene(sceneManager));
   sceneManager.register('character', () => new CharacterScene(sceneManager));
+  
+  // Note: Mode scenes (storyMode, towerMode, survivalMode, trainingMode, duelMode)
+  // will be implemented as the game modes are developed
   
   // Determine starting scene based on saved player data
   const playerData = localStorage.getItem('playerData');

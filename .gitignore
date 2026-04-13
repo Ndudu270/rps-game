@@ -1,2 +1,53 @@
-Nothing needs to be added to .gitignore since the changes only include TypeScript source files (.ts) which are not build artifacts, dependencies, or temporary files.
-node_modules/@rolldown/binding-win32-x64-msvc/rolldown-binding.win32-x64-msvc.node
+```gitignore
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+target/
+
+# Environment variables
+.env
+.env.local
+*.env.*
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.tmp
+
+# Logs
+*.log
+
+# Python specific
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+.venv/
+.env
+.env.local
+
+# Coverage reports
+coverage/
+htmlcov/
+.coverage
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# MyPy cache
+.mypy_cache/
+.pytest_cache/
+```
