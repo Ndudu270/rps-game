@@ -2,7 +2,7 @@
 
 import { PlayerStateInMatch, ActiveStatus, StatusEffectData, CombatEvent, PlayerId } from '../../shared/types/match';
 import { Stats } from '../../shared/types/stats';
-import { SeededRNG } from './RNG';
+import { SeededRNG } from '../core/RNG';
 
 export interface StatusDefinition {
   id: string;
