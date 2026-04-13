@@ -1,0 +1,222 @@
+[
+  {
+    "id": "noble",
+    "name": "Noble",
+    "description": "Born into privilege and trained in etiquette.",
+    "statModifiers": {
+      "strength": 0.95,
+      "agility": 1.0,
+      "intelligence": 1.05,
+      "charisma": 1.1,
+      "endurance": 0.95,
+      "perception": 1.0,
+      "luck": 1.0
+    },
+    "passives": [
+      {
+        "id": "influence",
+        "name": "Influence",
+        "effect": "Small discount when purchasing goods in civilized areas"
+      }
+    ],
+    "tags": ["social", "wealth"]
+  },
+  {
+    "id": "urchin",
+    "name": "Urchin",
+    "description": "Survived the streets through cunning and agility.",
+    "statModifiers": {
+      "strength": 0.95,
+      "agility": 1.1,
+      "intelligence": 1.0,
+      "charisma": 0.95,
+      "endurance": 1.0,
+      "perception": 1.05,
+      "luck": 1.0
+    },
+    "passives": [
+      {
+        "id": "streetwise",
+        "name": "Streetwise",
+        "effect": "Increased awareness of hidden passages and traps in urban environments"
+      }
+    ],
+    "tags": ["stealth", "urban"]
+  },
+  {
+    "id": "scholar",
+    "name": "Scholar",
+    "description": "Dedicated to study and intellectual pursuits.",
+    "statModifiers": {
+      "strength": 0.9,
+      "agility": 1.0,
+      "intelligence": 1.1,
+      "charisma": 1.0,
+      "endurance": 0.95,
+      "perception": 1.05,
+      "luck": 1.0
+    },
+    "passives": [
+      {
+        "id": "keen_mind",
+        "name": "Keen Mind",
+        "effect": "Small bonus to solving puzzles and recalling lore"
+      }
+    ],
+    "tags": ["knowledge", "academic"]
+  },
+  {
+    "id": "soldier",
+    "name": "Soldier",
+    "description": "Trained in discipline and survival.",
+    "statModifiers": {
+      "strength": 1.05,
+      "agility": 1.0,
+      "intelligence": 0.95,
+      "charisma": 1.0,
+      "endurance": 1.1,
+      "perception": 1.0,
+      "luck": 1.0
+    },
+    "passives": [
+      {
+        "id": "discipline",
+        "name": "Discipline",
+        "effect": "Gain small resistance to stun effects"
+      }
+    ],
+    "tags": ["martial", "survival"]
+  },
+  {
+    "id": "merchant",
+    "name": "Merchant",
+    "description": "Skilled in trade and negotiation.",
+    "statModifiers": {
+      "strength": 0.95,
+      "agility": 1.0,
+      "intelligence": 1.05,
+      "charisma": 1.1,
+      "endurance": 0.95,
+      "perception": 1.0,
+      "luck": 1.05
+    },
+    "passives": [
+      {
+        "id": "bargaining",
+        "name": "Bargaining",
+        "effect": "Small bonus to buying and selling prices"
+      }
+    ],
+    "tags": ["social", "commerce"]
+  },
+  {
+    "id": "acolyte",
+    "name": "Acolyte",
+    "description": "Devoted to a faith or spiritual practice.",
+    "statModifiers": {
+      "strength": 0.95,
+      "agility": 0.95,
+      "intelligence": 1.05,
+      "charisma": 1.05,
+      "endurance": 1.0,
+      "perception": 1.0,
+      "luck": 1.0
+    },
+    "passives": [
+      {
+        "id": "divine_favor",
+        "name": "Divine Favor",
+        "effect": "Small resistance to curses and slight bonus to healing received"
+      }
+    ],
+    "tags": ["faith", "magic"]
+  },
+  {
+    "id": "outlander",
+    "name": "Outlander",
+    "description": "Raised in the wild, far from civilization.",
+    "statModifiers": {
+      "strength": 1.1,
+      "agility": 1.0,
+      "intelligence": 0.9,
+      "charisma": 0.95,
+      "endurance": 1.05,
+      "perception": 1.05,
+      "luck": 1.0
+    },
+    "passives": [
+      {
+        "id": "survivalist",
+        "name": "Survivalist",
+        "effect": "Reduced hunger and thirst depletion, and improved tracking"
+      }
+    ],
+    "tags": ["nature", "survival"]
+  },
+  {
+    "id": "artisan",
+    "name": "Artisan",
+    "description": "Master of a craft or trade.",
+    "statModifiers": {
+      "strength": 0.95,
+      "agility": 1.05,
+      "intelligence": 1.05,
+      "charisma": 1.0,
+      "endurance": 0.95,
+      "perception": 1.0,
+      "luck": 1.0
+    },
+    "passives": [
+      {
+        "id": "craftsmanship",
+        "name": "Craftsmanship",
+        "effect": "Small bonus to repair and crafting actions"
+      }
+    ],
+    "tags": ["crafting", "technical"]
+  },
+  {
+    "id": "sailor",
+    "name": "Sailor",
+    "description": "Accustomed to life at sea and aboard ships.",
+    "statModifiers": {
+      "strength": 1.0,
+      "agility": 1.05,
+      "intelligence": 0.95,
+      "charisma": 0.95,
+      "endurance": 1.05,
+      "perception": 1.05,
+      "luck": 1.0
+    },
+    "passives": [
+      {
+        "id": "sea_legs",
+        "name": "Sea Legs",
+        "effect": "Resistance to motion sickness and improved balance on unstable surfaces"
+      }
+    ],
+    "tags": ["maritime", "survival"]
+  },
+  {
+    "id": "herbalist",
+    "name": "Herbalist",
+    "description": "Knowledgeable in plants and natural remedies.",
+    "statModifiers": {
+      "strength": 0.95,
+      "agility": 0.95,
+      "intelligence": 1.05,
+      "charisma": 1.0,
+      "endurance": 1.0,
+      "perception": 1.05,
+      "luck": 1.0
+    },
+    "passives": [
+      {
+        "id": "herbal_remedy",
+        "name": "Herbal Remedy",
+        "effect": "Small periodic health regeneration and resistance to poison"
+      }
+    ],
+    "tags": ["nature", "healing"]
+  }
+]

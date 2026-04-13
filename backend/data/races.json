@@ -1,0 +1,254 @@
+[
+  {
+    "id": "human",
+    "name": "Human",
+    "description": "Flexible and adaptable.",
+    "statModifiers": {
+      "strength": 1.0,
+      "agility": 1.0,
+      "intelligence": 1.0,
+      "charisma": 1.0,
+      "endurance": 1.0,
+      "perception": 1.0,
+      "luck": 1.05
+    },
+    "derivedModifiers": {
+      "hp": 1.0,
+      "attack": 1.0,
+      "defense": 1.0,
+      "speed": 1.0
+    },
+    "passives": [
+      {
+        "id": "adaptable",
+        "name": "Adaptable",
+        "effect": "Gain a small bonus to the first chosen stance each match."
+      }
+    ],
+    "tags": ["balanced", "flexible"]
+  },
+  {
+    "id": "high_elf",
+    "name": "High Elf",
+    "description": "Graceful and attuned to magic.",
+    "statModifiers": {
+      "strength": 0.9,
+      "agility": 1.0,
+      "intelligence": 1.15,
+      "charisma": 1.0,
+      "endurance": 0.9,
+      "perception": 1.05,
+      "luck": 1.0
+    },
+    "derivedModifiers": {
+      "hp": 1.0,
+      "attack": 1.0,
+      "defense": 1.0,
+      "speed": 1.0
+    },
+    "passives": [
+      {
+        "id": "arcane_affinity",
+        "name": "Arcane Affinity",
+        "effect": "Gain a small bonus to magical ability damage and healing."
+      }
+    ],
+    "tags": ["magical", "agile"]
+  },
+  {
+    "id": "dark_elf",
+    "name": "Dark Elf",
+    "description": "Nimble and cunning, masters of shadow.",
+    "statModifiers": {
+      "strength": 0.85,
+      "agility": 1.15,
+      "intelligence": 1.1,
+      "charisma": 0.9,
+      "endurance": 1.0,
+      "perception": 1.0,
+      "luck": 1.0
+    },
+    "derivedModifiers": {
+      "hp": 1.0,
+      "attack": 1.0,
+      "defense": 1.0,
+      "speed": 1.0
+    },
+    "passives": [
+      {
+        "id": "shadowstep",
+        "name": "Shadowstep",
+        "effect": "Gain increased evasion for the first round of combat."
+      }
+    ],
+    "tags": ["stealthy", "magical"]
+  },
+  {
+    "id": "dwarf",
+    "name": "Dwarf",
+    "description": "Sturdy and resilient, with unmatched endurance.",
+    "statModifiers": {
+      "strength": 1.15,
+      "agility": 0.85,
+      "intelligence": 0.95,
+      "charisma": 0.9,
+      "endurance": 1.15,
+      "perception": 1.0,
+      "luck": 1.0
+    },
+    "derivedModifiers": {
+      "hp": 1.0,
+      "attack": 1.0,
+      "defense": 1.0,
+      "speed": 1.0
+    },
+    "passives": [
+      {
+        "id": "sturdy",
+        "name": "Sturdy",
+        "effect": "Reduces damage from critical hits by 20%."
+      }
+    ],
+    "tags": ["tanky", "earthy"]
+  },
+  {
+    "id": "orc",
+    "name": "Orc",
+    "description": "Ferocious and powerful warriors.",
+    "statModifiers": {
+      "strength": 1.2,
+      "agility": 1.0,
+      "intelligence": 0.8,
+      "charisma": 1.0,
+      "endurance": 1.2,
+      "perception": 0.8,
+      "luck": 0.95
+    },
+    "derivedModifiers": {
+      "hp": 1.0,
+      "attack": 1.0,
+      "defense": 1.0,
+      "speed": 1.0
+    },
+    "passives": [
+      {
+        "id": "berserker_rage",
+        "name": "Berserker Rage",
+        "effect": "Increase damage dealt by 10% when below 30% health."
+      }
+    ],
+    "tags": ["aggressive", "strong"]
+  },
+  {
+    "id": "halfling",
+    "name": "Halfling",
+    "description": "Small, nimble, and remarkably lucky.",
+    "statModifiers": {
+      "strength": 0.8,
+      "agility": 1.2,
+      "intelligence": 1.0,
+      "charisma": 1.0,
+      "endurance": 0.9,
+      "perception": 1.1,
+      "luck": 1.1
+    },
+    "derivedModifiers": {
+      "hp": 1.0,
+      "attack": 1.0,
+      "defense": 1.0,
+      "speed": 1.0
+    },
+    "passives": [
+      {
+        "id": "nimble",
+        "name": "Nimble",
+        "effect": "Gain a 10% chance to completely avoid an attack."
+      }
+    ],
+    "tags": ["lucky", "quick"]
+  },
+  {
+    "id": "gnome",
+    "name": "Gnome",
+    "description": "Clever inventors with a knack for magic and gadgets.",
+    "statModifiers": {
+      "strength": 0.85,
+      "agility": 1.0,
+      "intelligence": 1.2,
+      "charisma": 1.05,
+      "endurance": 0.85,
+      "perception": 1.05,
+      "luck": 1.05
+    },
+    "derivedModifiers": {
+      "hp": 1.0,
+      "attack": 1.0,
+      "defense": 1.0,
+      "speed": 1.0
+    },
+    "passives": [
+      {
+        "id": "tinkerer",
+        "name": "Tinkerer",
+        "effect": "Gain a bonus to using devices, traps, and mechanical items."
+      }
+    ],
+    "tags": ["intelligent", "creative"]
+  },
+  {
+    "id": "demon",
+    "name": "Demon",
+    "description": "Otherworldly beings of dark power and charisma.",
+    "statModifiers": {
+      "strength": 1.1,
+      "agility": 1.0,
+      "intelligence": 0.9,
+      "charisma": 1.2,
+      "endurance": 1.0,
+      "perception": 0.8,
+      "luck": 0.95
+    },
+    "derivedModifiers": {
+      "hp": 1.0,
+      "attack": 1.0,
+      "defense": 1.0,
+      "speed": 1.0
+    },
+    "passives": [
+      {
+        "id": "dark_aura",
+        "name": "Dark Aura",
+        "effect": "Heal for 5% of damage dealt to enemies."
+      }
+    ],
+    "tags": ["demonic", "charismatic"]
+  },
+  {
+    "id": "beastfolk",
+    "name": "Beastfolk",
+    "description": "Feral, perceptive, and in tune with nature.",
+    "statModifiers": {
+      "strength": 1.05,
+      "agility": 1.15,
+      "intelligence": 0.85,
+      "charisma": 0.85,
+      "endurance": 1.1,
+      "perception": 1.0,
+      "luck": 1.0
+    },
+    "derivedModifiers": {
+      "hp": 1.0,
+      "attack": 1.0,
+      "defense": 1.0,
+      "speed": 1.0
+    },
+    "passives": [
+      {
+        "id": "bestial_senses",
+        "name": "Bestial Senses",
+        "effect": "Gain a bonus to detecting hidden enemies and traps."
+      }
+    ],
+    "tags": ["feral", "perceptive"]
+  }
+]

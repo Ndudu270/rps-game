@@ -1,0 +1,1602 @@
+[
+  {
+    "id": "barbed_spear",
+    "name": "Barbed Spear",
+    "type": "weapon",
+    "category": "spear",
+    "rarity": "common",
+    "damage": {
+      "base": 12,
+      "min": 10,
+      "max": 14
+    },
+    "scaling": {
+      "strength": 0.7,
+      "agility": 0.3,
+      "intelligence": 0.0
+    },
+    "combatModifiers": {
+      "speed": -2,
+      "critChance": 0.05,
+      "blockPower": 3
+    },
+    "allowedClasses": ["warrior", "paladin", "ranger"],
+    "allowedRaces": ["human", "elf", "dwarf", "orc", "halfling", "gnome", "tiefling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 80,
+    "sellValue": 40,
+    "description": "A spear with vicious barbs that tear flesh on withdrawal.",
+    "tags": ["melee", "piercing", "polearm"]
+  },
+  {
+    "id": "battle_axe",
+    "name": "Battle Axe",
+    "type": "weapon",
+    "category": "axe",
+    "rarity": "common",
+    "damage": {
+      "base": 13,
+      "min": 10,
+      "max": 16
+    },
+    "scaling": {
+      "strength": 0.9,
+      "agility": 0.1,
+      "intelligence": 0.0
+    },
+    "combatModifiers": {
+      "speed": -5,
+      "critChance": 0.04,
+      "blockPower": 4
+    },
+    "allowedClasses": ["warrior", "barbarian", "paladin"],
+    "allowedRaces": ["human", "elf", "dwarf", "orc", "halfling", "gnome", "tiefling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 100,
+    "sellValue": 50,
+    "description": "A sturdy, single-bladed axe favored by front-line fighters.",
+    "tags": ["melee", "slashing", "heavy"]
+  },
+  {
+    "id": "blackjack_sap",
+    "name": "Blackjack (sap)",
+    "type": "weapon",
+    "category": "bludgeon",
+    "rarity": "common",
+    "damage": {
+      "base": 6,
+      "min": 4,
+      "max": 8
+    },
+    "scaling": {
+      "strength": 0.4,
+      "agility": 0.4,
+      "intelligence": 0.0
+    },
+    "combatModifiers": {
+      "speed": 8,
+      "critChance": 0.10,
+      "blockPower": 0
+    },
+    "allowedClasses": ["rogue", "assassin", "warrior"],
+    "allowedRaces": ["human", "elf", "dwarf", "orc", "halfling", "gnome", "tiefling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 25,
+    "sellValue": 12,
+    "description": "A leather-wrapped lead weight, perfect for knocking out unsuspecting foes.",
+    "tags": ["melee", "bludgeoning", "stealth", "non-lethal"]
+  },
+  {
+    "id": "blowgun",
+    "name": "Blowgun",
+    "type": "weapon",
+    "category": "ranged",
+    "rarity": "common",
+    "damage": {
+      "base": 4,
+      "min": 2,
+      "max": 6
+    },
+    "scaling": {
+      "strength": 0.0,
+      "agility": 0.8,
+      "intelligence": 0.0
+    },
+    "combatModifiers": {
+      "speed": 12,
+      "critChance": 0.08,
+      "blockPower": 0
+    },
+    "allowedClasses": ["rogue", "ranger", "assassin"],
+    "allowedRaces": ["human", "elf", "halfling", "gnome", "tiefling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 20,
+    "sellValue": 10,
+    "description": "A hollow tube for firing needles or darts, often used with poisons.",
+    "tags": ["ranged", "piercing", "stealth"]
+  },
+  {
+    "id": "bone_staff",
+    "name": "Bone Staff",
+    "type": "weapon",
+    "category": "staff",
+    "rarity": "common",
+    "damage": {
+      "base": 8,
+      "min": 6,
+      "max": 10
+    },
+    "scaling": {
+      "strength": 0.4,
+      "agility": 0.2,
+      "intelligence": 0.4
+    },
+    "combatModifiers": {
+      "speed": 2,
+      "critChance": 0.05,
+      "blockPower": 5
+    },
+    "allowedClasses": ["mage", "cleric", "druid", "monk"],
+    "allowedRaces": ["human", "elf", "dwarf", "orc", "halfling", "gnome", "tiefling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 45,
+    "sellValue": 22,
+    "description": "A staff carved from hardened bone, infused with primal magic.",
+    "tags": ["melee", "bludgeoning", "magical", "focus"]
+  },
+  {
+    "id": "club",
+    "name": "Club",
+    "type": "weapon",
+    "category": "bludgeon",
+    "rarity": "common",
+    "damage": {
+      "base": 7,
+      "min": 5,
+      "max": 9
+    },
+    "scaling": {
+      "strength": 0.6,
+      "agility": 0.0,
+      "intelligence": 0.0
+    },
+    "combatModifiers": {
+      "speed": 0,
+      "critChance": 0.03,
+      "blockPower": 2
+    },
+    "allowedClasses": ["warrior", "barbarian", "druid", "rogue"],
+    "allowedRaces": ["human", "elf", "dwarf", "orc", "halfling", "gnome", "tiefling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 10,
+    "sellValue": 5,
+    "description": "A simple wooden club, crude but effective.",
+    "tags": ["melee", "bludgeoning", "improvised", "starter"]
+  },
+  {
+    "id": "crossbow_heavy",
+    "name": "Crossbow (heavy)",
+    "type": "weapon",
+    "category": "crossbow",
+    "rarity": "common",
+    "damage": {
+      "base": 16,
+      "min": 12,
+      "max": 20
+    },
+    "scaling": {
+      "strength": 0.6,
+      "agility": 0.2,
+      "intelligence": 0.0
+    },
+    "combatModifiers": {
+      "speed": -10,
+      "critChance": 0.08,
+      "blockPower": 0
+    },
+    "allowedClasses": ["warrior", "ranger", "rogue"],
+    "allowedRaces": ["human", "elf", "dwarf", "orc", "halfling", "gnome", "tiefling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 150,
+    "sellValue": 75,
+    "description": "A massive crossbow that requires both hands and a crank to reload, but delivers devastating bolts.",
+    "tags": ["ranged", "piercing", "heavy", "two-handed"]
+  },
+  {
+    "id": "curved_dagger_ritual",
+    "name": "Curved Dagger (ritual / demon)",
+    "type": "weapon",
+    "category": "dagger",
+    "rarity": "uncommon",
+    "damage": {
+      "base": 8,
+      "min": 6,
+      "max": 10
+    },
+    "scaling": {
+      "strength": 0.2,
+      "agility": 0.5,
+      "intelligence": 0.3
+    },
+    "combatModifiers": {
+      "speed": 5,
+      "critChance": 0.12,
+      "blockPower": 1
+    },
+    "allowedClasses": ["rogue", "assassin", "warlock", "mage"],
+    "allowedRaces": ["human", "elf", "tiefling", "orc"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 120,
+    "sellValue": 60,
+    "description": "A sinister, wavy-bladed dagger used in forbidden rites.",
+    "tags": ["melee", "piercing", "ritual", "magical"]
+  },
+  {
+    "id": "dagger",
+    "name": "Dagger",
+    "type": "weapon",
+    "category": "dagger",
+    "rarity": "common",
+    "damage": {
+      "base": 6,
+      "min": 4,
+      "max": 8
+    },
+    "scaling": {
+      "strength": 0.2,
+      "agility": 0.7,
+      "intelligence": 0.0
+    },
+    "combatModifiers": {
+      "speed": 10,
+      "critChance": 0.10,
+      "blockPower": 1
+    },
+    "allowedClasses": ["warrior", "rogue", "assassin", "mage", "cleric"],
+    "allowedRaces": ["human", "elf", "dwarf", "orc", "halfling", "gnome", "tiefling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 25,
+    "sellValue": 12,
+    "description": "A small, versatile blade, easily concealed and quick to draw.",
+    "tags": ["melee", "piercing", "light", "stealth"]
+  },
+  {
+    "id": "dart",
+    "name": "Dart",
+    "type": "weapon",
+    "category": "ranged",
+    "rarity": "common",
+    "damage": {
+      "base": 4,
+      "min": 2,
+      "max": 6
+    },
+    "scaling": {
+      "strength": 0.1,
+      "agility": 0.8,
+      "intelligence": 0.0
+    },
+    "combatModifiers": {
+      "speed": 15,
+      "critChance": 0.07,
+      "blockPower": 0
+    },
+    "allowedClasses": ["rogue", "ranger", "warrior"],
+    "allowedRaces": ["human", "elf", "halfling", "gnome", "tiefling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 5,
+    "sellValue": 2,
+    "description": "A lightweight throwing dart, easy to carry in quantity.",
+    "tags": ["ranged", "piercing", "thrown", "consumable"]
+  },
+  {
+    "id": "falchion",
+    "name": "Falchion",
+    "type": "weapon",
+    "category": "sword",
+    "rarity": "common",
+    "damage": {
+      "base": 11,
+      "min": 8,
+      "max": 14
+    },
+    "scaling": {
+      "strength": 0.7,
+      "agility": 0.3,
+      "intelligence": 0.0
+    },
+    "combatModifiers": {
+      "speed": -1,
+      "critChance": 0.05,
+      "blockPower": 3
+    },
+    "allowedClasses": ["warrior", "paladin", "ranger"],
+    "allowedRaces": ["human", "elf", "orc", "tiefling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 90,
+    "sellValue": 45,
+    "description": "A curved, single-edged sword that excels at slashing.",
+    "tags": ["melee", "slashing", "curved"]
+  },
+  {
+    "id": "flail",
+    "name": "Flail",
+    "type": "weapon",
+    "category": "flail",
+    "rarity": "common",
+    "damage": {
+      "base": 12,
+      "min": 9,
+      "max": 15
+    },
+    "scaling": {
+      "strength": 0.8,
+      "agility": 0.1,
+      "intelligence": 0.0
+    },
+    "combatModifiers": {
+      "speed": -4,
+      "critChance": 0.06,
+      "blockPower": 2
+    },
+    "allowedClasses": ["warrior", "paladin", "cleric"],
+    "allowedRaces": ["human", "elf", "dwarf", "orc", "tiefling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 110,
+    "sellValue": 55,
+    "description": "A handle attached to a spiked ball by a chain, capable of striking around shields.",
+    "tags": ["melee", "bludgeoning", "chain", "flail"]
+  },
+  {
+    "id": "flamberge_zweihander",
+    "name": "Flamberge (zweihänder)",
+    "type": "weapon",
+    "category": "greatsword",
+    "rarity": "rare",
+    "damage": {
+      "base": 18,
+      "min": 14,
+      "max": 22
+    },
+    "scaling": {
+      "strength": 0.9,
+      "agility": 0.1,
+      "intelligence": 0.0
+    },
+    "combatModifiers": {
+      "speed": -8,
+      "critChance": 0.07,
+      "blockPower": 6
+    },
+    "allowedClasses": ["warrior", "barbarian", "paladin"],
+    "allowedRaces": ["human", "elf", "orc", "dwarf"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 250,
+    "sellValue": 125,
+    "description": "A massive two-handed sword with a wavy blade, designed to break spear shafts and intimidate.",
+    "tags": ["melee", "slashing", "two-handed", "heavy"]
+  },
+  {
+    "id": "garrote_wire",
+    "name": "Garrote (wire)",
+    "type": "weapon",
+    "category": "exotic",
+    "rarity": "common",
+    "damage": {
+      "base": 5,
+      "min": 3,
+      "max": 7
+    },
+    "scaling": {
+      "strength": 0.3,
+      "agility": 0.6,
+      "intelligence": 0.0
+    },
+    "combatModifiers": {
+      "speed": 12,
+      "critChance": 0.20,
+      "blockPower": 0
+    },
+    "allowedClasses": ["rogue", "assassin"],
+    "allowedRaces": ["human", "elf", "halfling", "gnome", "tiefling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 15,
+    "sellValue": 7,
+    "description": "A length of wire with wooden handles, used to strangle unsuspecting victims.",
+    "tags": ["melee", "slashing", "stealth", "grapple"]
+  },
+  {
+    "id": "greataxe",
+    "name": "Greataxe",
+    "type": "weapon",
+    "category": "axe",
+    "rarity": "common",
+    "damage": {
+      "base": 17,
+      "min": 13,
+      "max": 21
+    },
+    "scaling": {
+      "strength": 1.0,
+      "agility": 0.0,
+      "intelligence": 0.0
+    },
+    "combatModifiers": {
+      "speed": -9,
+      "critChance": 0.08,
+      "blockPower": 4
+    },
+    "allowedClasses": ["warrior", "barbarian", "paladin"],
+    "allowedRaces": ["human", "orc", "dwarf", "tiefling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 200,
+    "sellValue": 100,
+    "description": "A massive, double-bladed axe that cleaves through armor and bone.",
+    "tags": ["melee", "slashing", "two-handed", "heavy"]
+  },
+  {
+    "id": "greatsword",
+    "name": "Greatsword",
+    "type": "weapon",
+    "category": "greatsword",
+    "rarity": "common",
+    "damage": {
+      "base": 16,
+      "min": 12,
+      "max": 20
+    },
+    "scaling": {
+      "strength": 0.9,
+      "agility": 0.1,
+      "intelligence": 0.0
+    },
+    "combatModifiers": {
+      "speed": -7,
+      "critChance": 0.06,
+      "blockPower": 5
+    },
+    "allowedClasses": ["warrior", "paladin", "barbarian"],
+    "allowedRaces": ["human", "elf", "orc", "dwarf", "tiefling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 180,
+    "sellValue": 90,
+    "description": "A large, two-handed sword with a long blade and balanced hilt.",
+    "tags": ["melee", "slashing", "two-handed"]
+  },
+  {
+    "id": "hand_axe",
+    "name": "Hand Axe",
+    "type": "weapon",
+    "category": "axe",
+    "rarity": "common",
+    "damage": {
+      "base": 8,
+      "min": 6,
+      "max": 10
+    },
+    "scaling": {
+      "strength": 0.6,
+      "agility": 0.2,
+      "intelligence": 0.0
+    },
+    "combatModifiers": {
+      "speed": 5,
+      "critChance": 0.05,
+      "blockPower": 2
+    },
+    "allowedClasses": ["warrior", "barbarian", "ranger", "rogue"],
+    "allowedRaces": ["human", "elf", "dwarf", "orc", "halfling", "gnome", "tiefling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 40,
+    "sellValue": 20,
+    "description": "A small axe suitable for one-handed use, can be thrown.",
+    "tags": ["melee", "slashing", "thrown", "light"]
+  },
+  {
+    "id": "hand_crossbow",
+    "name": "Hand Crossbow",
+    "type": "weapon",
+    "category": "crossbow",
+    "rarity": "common",
+    "damage": {
+      "base": 8,
+      "min": 6,
+      "max": 10
+    },
+    "scaling": {
+      "strength": 0.1,
+      "agility": 0.7,
+      "intelligence": 0.0
+    },
+    "combatModifiers": {
+      "speed": 8,
+      "critChance": 0.08,
+      "blockPower": 0
+    },
+    "allowedClasses": ["rogue", "ranger", "assassin"],
+    "allowedRaces": ["human", "elf", "halfling", "gnome", "tiefling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 75,
+    "sellValue": 37,
+    "description": "A small, one-handed crossbow favored by scouts and assassins.",
+    "tags": ["ranged", "piercing", "light", "stealth"]
+  },
+  {
+    "id": "hatchet",
+    "name": "Hatchet",
+    "type": "weapon",
+    "category": "axe",
+    "rarity": "common",
+    "damage": {
+      "base": 7,
+      "min": 5,
+      "max": 9
+    },
+    "scaling": {
+      "strength": 0.5,
+      "agility": 0.3,
+      "intelligence": 0.0
+    },
+    "combatModifiers": {
+      "speed": 6,
+      "critChance": 0.05,
+      "blockPower": 1
+    },
+    "allowedClasses": ["warrior", "barbarian", "ranger", "rogue"],
+    "allowedRaces": ["human", "elf", "dwarf", "orc", "halfling", "gnome", "tiefling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 35,
+    "sellValue": 17,
+    "description": "A lightweight woodcutting axe that doubles as a weapon.",
+    "tags": ["melee", "slashing", "light", "tool"]
+  },
+  {
+    "id": "heavy_flail",
+    "name": "Heavy Flail",
+    "type": "weapon",
+    "category": "flail",
+    "rarity": "common",
+    "damage": {
+      "base": 15,
+      "min": 11,
+      "max": 19
+    },
+    "scaling": {
+      "strength": 0.9,
+      "agility": 0.0,
+      "intelligence": 0.0
+    },
+    "combatModifiers": {
+      "speed": -7,
+      "critChance": 0.07,
+      "blockPower": 3
+    },
+    "allowedClasses": ["warrior", "paladin", "cleric"],
+    "allowedRaces": ["human", "dwarf", "orc", "tiefling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 160,
+    "sellValue": 80,
+    "description": "A larger, more devastating flail with a weighted, spiked head.",
+    "tags": ["melee", "bludgeoning", "two-handed", "flail"]
+  },
+  {
+    "id": "hunting_knife",
+    "name": "Hunting Knife",
+    "type": "weapon",
+    "category": "dagger",
+    "rarity": "common",
+    "damage": {
+      "base": 7,
+      "min": 5,
+      "max": 9
+    },
+    "scaling": {
+      "strength": 0.3,
+      "agility": 0.6,
+      "intelligence": 0.0
+    },
+    "combatModifiers": {
+      "speed": 8,
+      "critChance": 0.08,
+      "blockPower": 1
+    },
+    "allowedClasses": ["warrior", "rogue", "ranger", "assassin"],
+    "allowedRaces": ["human", "elf", "dwarf", "orc", "halfling", "gnome", "tiefling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 30,
+    "sellValue": 15,
+    "description": "A sturdy, sharp knife designed for skinning game and self-defense.",
+    "tags": ["melee", "piercing", "slashing", "tool"]
+  },
+  {
+    "id": "javelin",
+    "name": "Javelin",
+    "type": "weapon",
+    "category": "spear",
+    "rarity": "common",
+    "damage": {
+      "base": 9,
+      "min": 7,
+      "max": 11
+    },
+    "scaling": {
+      "strength": 0.5,
+      "agility": 0.4,
+      "intelligence": 0.0
+    },
+    "combatModifiers": {
+      "speed": 2,
+      "critChance": 0.05,
+      "blockPower": 2
+    },
+    "allowedClasses": ["warrior", "ranger", "barbarian"],
+    "allowedRaces": ["human", "elf", "orc", "tiefling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 30,
+    "sellValue": 15,
+    "description": "A light throwing spear, effective both in melee and at range.",
+    "tags": ["melee", "ranged", "piercing", "thrown"]
+  },
+  {
+    "id": "katar",
+    "name": "Katar",
+    "type": "weapon",
+    "category": "dagger",
+    "rarity": "common",
+    "damage": {
+      "base": 8,
+      "min": 6,
+      "max": 10
+    },
+    "scaling": {
+      "strength": 0.4,
+      "agility": 0.5,
+      "intelligence": 0.0
+    },
+    "combatModifiers": {
+      "speed": 7,
+      "critChance": 0.09,
+      "blockPower": 2
+    },
+    "allowedClasses": ["warrior", "rogue", "assassin", "monk"],
+    "allowedRaces": ["human", "elf", "dwarf", "orc", "tiefling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 60,
+    "sellValue": 30,
+    "description": "A punch-dagger with an H-shaped grip, designed for piercing armor.",
+    "tags": ["melee", "piercing", "punching", "exotic"]
+  },
+  {
+    "id": "lance",
+    "name": "Lance",
+    "type": "weapon",
+    "category": "spear",
+    "rarity": "common",
+    "damage": {
+      "base": 14,
+      "min": 10,
+      "max": 18
+    },
+    "scaling": {
+      "strength": 0.8,
+      "agility": 0.1,
+      "intelligence": 0.0
+    },
+    "combatModifiers": {
+      "speed": -6,
+      "critChance": 0.07,
+      "blockPower": 2
+    },
+    "allowedClasses": ["warrior", "paladin", "cavalier"],
+    "allowedRaces": ["human", "elf", "dwarf", "orc", "tiefling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 120,
+    "sellValue": 60,
+    "description": "A long, heavy spear used from horseback, devastating on a charge.",
+    "tags": ["melee", "piercing", "two-handed", "mounted"]
+  },
+  {
+    "id": "light_crossbow",
+    "name": "Light Crossbow",
+    "type": "weapon",
+    "category": "crossbow",
+    "rarity": "common",
+    "damage": {
+      "base": 10,
+      "min": 8,
+      "max": 12
+    },
+    "scaling": {
+      "strength": 0.3,
+      "agility": 0.5,
+      "intelligence": 0.0
+    },
+    "combatModifiers": {
+      "speed": 0,
+      "critChance": 0.06,
+      "blockPower": 0
+    },
+    "allowedClasses": ["warrior", "ranger", "rogue", "cleric"],
+    "allowedRaces": ["human", "elf", "dwarf", "orc", "halfling", "gnome", "tiefling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 60,
+    "sellValue": 30,
+    "description": "A simple, one-handed crossbow that balances power and ease of use.",
+    "tags": ["ranged", "piercing", "light"]
+  },
+  {
+    "id": "longbow",
+    "name": "Longbow",
+    "type": "weapon",
+    "category": "bow",
+    "rarity": "common",
+    "damage": {
+      "base": 12,
+      "min": 9,
+      "max": 15
+    },
+    "scaling": {
+      "strength": 0.4,
+      "agility": 0.6,
+      "intelligence": 0.0
+    },
+    "combatModifiers": {
+      "speed": -2,
+      "critChance": 0.07,
+      "blockPower": 0
+    },
+    "allowedClasses": ["ranger", "warrior", "rogue"],
+    "allowedRaces": ["human", "elf", "orc", "tiefling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 100,
+    "sellValue": 50,
+    "description": "A tall bow that delivers powerful arrows over great distances.",
+    "tags": ["ranged", "piercing", "two-handed", "bow"]
+  },
+  {
+    "id": "longsword",
+    "name": "Longsword",
+    "type": "weapon",
+    "category": "sword",
+    "rarity": "common",
+    "damage": {
+      "base": 12,
+      "min": 9,
+      "max": 15
+    },
+    "scaling": {
+      "strength": 0.7,
+      "agility": 0.3,
+      "intelligence": 0.0
+    },
+    "combatModifiers": {
+      "speed": 0,
+      "critChance": 0.05,
+      "blockPower": 4
+    },
+    "allowedClasses": ["warrior", "paladin", "ranger", "rogue"],
+    "allowedRaces": ["human", "elf", "dwarf", "orc", "tiefling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 100,
+    "sellValue": 50,
+    "description": "The classic straight sword, balanced for thrusting and cutting.",
+    "tags": ["melee", "slashing", "piercing", "versatile"]
+  },
+  {
+    "id": "mace",
+    "name": "Mace",
+    "type": "weapon",
+    "category": "mace",
+    "rarity": "common",
+    "damage": {
+      "base": 10,
+      "min": 8,
+      "max": 12
+    },
+    "scaling": {
+      "strength": 0.8,
+      "agility": 0.1,
+      "intelligence": 0.0
+    },
+    "combatModifiers": {
+      "speed": -2,
+      "critChance": 0.04,
+      "blockPower": 3
+    },
+    "allowedClasses": ["warrior", "paladin", "cleric"],
+    "allowedRaces": ["human", "elf", "dwarf", "orc", "tiefling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 70,
+    "sellValue": 35,
+    "description": "A flanged metal club designed to crush armor.",
+    "tags": ["melee", "bludgeoning", "armor-breaking"]
+  },
+  {
+    "id": "maul",
+    "name": "Maul",
+    "type": "weapon",
+    "category": "hammer",
+    "rarity": "common",
+    "damage": {
+      "base": 16,
+      "min": 12,
+      "max": 20
+    },
+    "scaling": {
+      "strength": 1.0,
+      "agility": 0.0,
+      "intelligence": 0.0
+    },
+    "combatModifiers": {
+      "speed": -8,
+      "critChance": 0.05,
+      "blockPower": 4
+    },
+    "allowedClasses": ["warrior", "barbarian", "paladin"],
+    "allowedRaces": ["human", "dwarf", "orc", "tiefling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 140,
+    "sellValue": 70,
+    "description": "A massive sledgehammer, slow but devastating against structures and armor.",
+    "tags": ["melee", "bludgeoning", "two-handed", "heavy"]
+  },
+  {
+    "id": "morningstar",
+    "name": "Morningstar",
+    "type": "weapon",
+    "category": "mace",
+    "rarity": "common",
+    "damage": {
+      "base": 11,
+      "min": 8,
+      "max": 14
+    },
+    "scaling": {
+      "strength": 0.8,
+      "agility": 0.1,
+      "intelligence": 0.0
+    },
+    "combatModifiers": {
+      "speed": -3,
+      "critChance": 0.05,
+      "blockPower": 3
+    },
+    "allowedClasses": ["warrior", "paladin", "cleric"],
+    "allowedRaces": ["human", "elf", "dwarf", "orc", "tiefling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 90,
+    "sellValue": 45,
+    "description": "A spiked club that combines bludgeoning force with piercing wounds.",
+    "tags": ["melee", "bludgeoning", "piercing", "spiked"]
+  },
+  {
+    "id": "war_pick",
+    "name": "Pick (war pick)",
+    "type": "weapon",
+    "category": "pick",
+    "rarity": "common",
+    "damage": {
+      "base": 10,
+      "min": 7,
+      "max": 13
+    },
+    "scaling": {
+      "strength": 0.8,
+      "agility": 0.1,
+      "intelligence": 0.0
+    },
+    "combatModifiers": {
+      "speed": -2,
+      "critChance": 0.06,
+      "blockPower": 2
+    },
+    "allowedClasses": ["warrior", "paladin", "barbarian"],
+    "allowedRaces": ["human", "elf", "dwarf", "orc", "tiefling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 80,
+    "sellValue": 40,
+    "description": "A piercing weapon with a sharp point, excellent for penetrating armor.",
+    "tags": ["melee", "piercing", "armor-breaking"]
+  },
+  {
+    "id": "poisoned_dart",
+    "name": "Poisoned Dart",
+    "type": "weapon",
+    "category": "ranged",
+    "rarity": "uncommon",
+    "damage": {
+      "base": 4,
+      "min": 2,
+      "max": 6
+    },
+    "scaling": {
+      "strength": 0.0,
+      "agility": 0.6,
+      "intelligence": 0.2
+    },
+    "combatModifiers": {
+      "speed": 14,
+      "critChance": 0.10,
+      "blockPower": 0
+    },
+    "allowedClasses": ["rogue", "assassin", "ranger"],
+    "allowedRaces": ["human", "elf", "halfling", "gnome", "tiefling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 50,
+    "sellValue": 25,
+    "description": "A small dart coated with a debilitating toxin.",
+    "tags": ["ranged", "piercing", "poison", "consumable"]
+  },
+  {
+    "id": "quarterstaff",
+    "name": "Quarterstaff",
+    "type": "weapon",
+    "category": "staff",
+    "rarity": "common",
+    "damage": {
+      "base": 8,
+      "min": 6,
+      "max": 10
+    },
+    "scaling": {
+      "strength": 0.4,
+      "agility": 0.4,
+      "intelligence": 0.2
+    },
+    "combatModifiers": {
+      "speed": 4,
+      "critChance": 0.05,
+      "blockPower": 6
+    },
+    "allowedClasses": ["monk", "mage", "cleric", "druid", "warrior"],
+    "allowedRaces": ["human", "elf", "dwarf", "orc", "halfling", "gnome", "tiefling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 20,
+    "sellValue": 10,
+    "description": "A long wooden staff, versatile in defense and offense.",
+    "tags": ["melee", "bludgeoning", "two-handed", "parry"]
+  },
+  {
+    "id": "rapier",
+    "name": "Rapier",
+    "type": "weapon",
+    "category": "sword",
+    "rarity": "common",
+    "damage": {
+      "base": 10,
+      "min": 7,
+      "max": 13
+    },
+    "scaling": {
+      "strength": 0.2,
+      "agility": 0.8,
+      "intelligence": 0.0
+    },
+    "combatModifiers": {
+      "speed": 5,
+      "critChance": 0.08,
+      "blockPower": 3
+    },
+    "allowedClasses": ["rogue", "warrior", "assassin", "duelist"],
+    "allowedRaces": ["human", "elf", "halfling", "tiefling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 120,
+    "sellValue": 60,
+    "description": "A slender, thrusting sword designed for finesse and precision.",
+    "tags": ["melee", "piercing", "finesse", "parry"]
+  },
+  {
+    "id": "ritual_dagger",
+    "name": "Ritual Dagger",
+    "type": "weapon",
+    "category": "dagger",
+    "rarity": "uncommon",
+    "damage": {
+      "base": 7,
+      "min": 5,
+      "max": 9
+    },
+    "scaling": {
+      "strength": 0.1,
+      "agility": 0.5,
+      "intelligence": 0.4
+    },
+    "combatModifiers": {
+      "speed": 6,
+      "critChance": 0.10,
+      "blockPower": 1
+    },
+    "allowedClasses": ["mage", "warlock", "cleric", "rogue"],
+    "allowedRaces": ["human", "elf", "tiefling", "gnome"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 100,
+    "sellValue": 50,
+    "description": "An ornate dagger used in magical ceremonies and sacrifices.",
+    "tags": ["melee", "piercing", "magical", "ritual"]
+  },
+  {
+    "id": "scythe",
+    "name": "Scythe",
+    "type": "weapon",
+    "category": "exotic",
+    "rarity": "common",
+    "damage": {
+      "base": 12,
+      "min": 9,
+      "max": 15
+    },
+    "scaling": {
+      "strength": 0.6,
+      "agility": 0.2,
+      "intelligence": 0.1
+    },
+    "combatModifiers": {
+      "speed": -4,
+      "critChance": 0.09,
+      "blockPower": 2
+    },
+    "allowedClasses": ["warrior", "barbarian", "druid", "warlock"],
+    "allowedRaces": ["human", "elf", "orc", "tiefling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 90,
+    "sellValue": 45,
+    "description": "A farming tool repurposed as a grim reaping weapon.",
+    "tags": ["melee", "slashing", "two-handed", "exotic"]
+  },
+  {
+    "id": "scimitar",
+    "name": "Scimitar",
+    "type": "weapon",
+    "category": "sword",
+    "rarity": "common",
+    "damage": {
+      "base": 10,
+      "min": 7,
+      "max": 13
+    },
+    "scaling": {
+      "strength": 0.5,
+      "agility": 0.5,
+      "intelligence": 0.0
+    },
+    "combatModifiers": {
+      "speed": 3,
+      "critChance": 0.07,
+      "blockPower": 2
+    },
+    "allowedClasses": ["warrior", "rogue", "ranger", "duelist"],
+    "allowedRaces": ["human", "elf", "orc", "tiefling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 85,
+    "sellValue": 42,
+    "description": "A curved, single-edged sword known for its slashing cuts.",
+    "tags": ["melee", "slashing", "curved", "light"]
+  },
+  {
+    "id": "shortbow",
+    "name": "Shortbow",
+    "type": "weapon",
+    "category": "bow",
+    "rarity": "common",
+    "damage": {
+      "base": 8,
+      "min": 6,
+      "max": 10
+    },
+    "scaling": {
+      "strength": 0.2,
+      "agility": 0.7,
+      "intelligence": 0.0
+    },
+    "combatModifiers": {
+      "speed": 5,
+      "critChance": 0.06,
+      "blockPower": 0
+    },
+    "allowedClasses": ["ranger", "rogue", "warrior"],
+    "allowedRaces": ["human", "elf", "halfling", "gnome", "tiefling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 50,
+    "sellValue": 25,
+    "description": "A compact bow, easy to carry and quick to fire.",
+    "tags": ["ranged", "piercing", "bow", "light"]
+  },
+  {
+    "id": "shortsword",
+    "name": "Shortsword",
+    "type": "weapon",
+    "category": "sword",
+    "rarity": "common",
+    "damage": {
+      "base": 9,
+      "min": 7,
+      "max": 11
+    },
+    "scaling": {
+      "strength": 0.4,
+      "agility": 0.5,
+      "intelligence": 0.0
+    },
+    "combatModifiers": {
+      "speed": 4,
+      "critChance": 0.06,
+      "blockPower": 3
+    },
+    "allowedClasses": ["warrior", "rogue", "assassin", "ranger"],
+    "allowedRaces": ["human", "elf", "dwarf", "orc", "halfling", "gnome", "tiefling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 60,
+    "sellValue": 30,
+    "description": "A versatile, double-edged blade ideal for thrusting and cutting.",
+    "tags": ["melee", "piercing", "slashing", "light"]
+  },
+  {
+    "id": "sickle",
+    "name": "Sickle",
+    "type": "weapon",
+    "category": "exotic",
+    "rarity": "common",
+    "damage": {
+      "base": 6,
+      "min": 4,
+      "max": 8
+    },
+    "scaling": {
+      "strength": 0.3,
+      "agility": 0.5,
+      "intelligence": 0.1
+    },
+    "combatModifiers": {
+      "speed": 7,
+      "critChance": 0.07,
+      "blockPower": 1
+    },
+    "allowedClasses": ["druid", "rogue", "cleric", "warrior"],
+    "allowedRaces": ["human", "elf", "halfling", "gnome", "tiefling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 15,
+    "sellValue": 7,
+    "description": "A curved harvesting blade, often used in ritual or as an improvised weapon.",
+    "tags": ["melee", "slashing", "tool", "light"]
+  },
+  {
+    "id": "sling",
+    "name": "Sling",
+    "type": "weapon",
+    "category": "ranged",
+    "rarity": "common",
+    "damage": {
+      "base": 6,
+      "min": 4,
+      "max": 8
+    },
+    "scaling": {
+      "strength": 0.3,
+      "agility": 0.6,
+      "intelligence": 0.0
+    },
+    "combatModifiers": {
+      "speed": 6,
+      "critChance": 0.04,
+      "blockPower": 0
+    },
+    "allowedClasses": ["ranger", "rogue", "warrior", "cleric"],
+    "allowedRaces": ["human", "elf", "halfling", "gnome", "dwarf"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 5,
+    "sellValue": 2,
+    "description": "A leather pouch on cords that hurls stones with surprising force.",
+    "tags": ["ranged", "bludgeoning", "simple", "ammunition"]
+  },
+  {
+    "id": "spear",
+    "name": "Spear",
+    "type": "weapon",
+    "category": "spear",
+    "rarity": "common",
+    "damage": {
+      "base": 10,
+      "min": 8,
+      "max": 12
+    },
+    "scaling": {
+      "strength": 0.6,
+      "agility": 0.3,
+      "intelligence": 0.0
+    },
+    "combatModifiers": {
+      "speed": 1,
+      "critChance": 0.05,
+      "blockPower": 3
+    },
+    "allowedClasses": ["warrior", "paladin", "ranger", "barbarian"],
+    "allowedRaces": ["human", "elf", "dwarf", "orc", "halfling", "gnome", "tiefling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 30,
+    "sellValue": 15,
+    "description": "A simple wooden shaft with a pointed metal tip, effective from behind a shield.",
+    "tags": ["melee", "piercing", "thrown", "polearm"]
+  },
+  {
+    "id": "spiked_club",
+    "name": "Spiked Club",
+    "type": "weapon",
+    "category": "bludgeon",
+    "rarity": "common",
+    "damage": {
+      "base": 9,
+      "min": 7,
+      "max": 11
+    },
+    "scaling": {
+      "strength": 0.7,
+      "agility": 0.1,
+      "intelligence": 0.0
+    },
+    "combatModifiers": {
+      "speed": -1,
+      "critChance": 0.06,
+      "blockPower": 2
+    },
+    "allowedClasses": ["warrior", "barbarian", "druid"],
+    "allowedRaces": ["human", "orc", "dwarf", "tiefling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 40,
+    "sellValue": 20,
+    "description": "A wooden club studded with nails or sharp rocks, crude but brutal.",
+    "tags": ["melee", "bludgeoning", "piercing", "crude"]
+  },
+  {
+    "id": "spiked_whip",
+    "name": "Spiked Whip",
+    "type": "weapon",
+    "category": "whip",
+    "rarity": "uncommon",
+    "damage": {
+      "base": 7,
+      "min": 5,
+      "max": 9
+    },
+    "scaling": {
+      "strength": 0.2,
+      "agility": 0.7,
+      "intelligence": 0.0
+    },
+    "combatModifiers": {
+      "speed": 9,
+      "critChance": 0.12,
+      "blockPower": 0
+    },
+    "allowedClasses": ["rogue", "assassin", "ranger"],
+    "allowedRaces": ["human", "elf", "tiefling", "halfling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 70,
+    "sellValue": 35,
+    "description": "A leather whip embedded with sharp barbs, capable of tripping and lacerating.",
+    "tags": ["melee", "slashing", "reach", "finesse"]
+  },
+  {
+    "id": "stiletto",
+    "name": "Stiletto",
+    "type": "weapon",
+    "category": "dagger",
+    "rarity": "common",
+    "damage": {
+      "base": 6,
+      "min": 4,
+      "max": 8
+    },
+    "scaling": {
+      "strength": 0.1,
+      "agility": 0.8,
+      "intelligence": 0.0
+    },
+    "combatModifiers": {
+      "speed": 11,
+      "critChance": 0.15,
+      "blockPower": 0
+    },
+    "allowedClasses": ["rogue", "assassin"],
+    "allowedRaces": ["human", "elf", "halfling", "gnome", "tiefling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 35,
+    "sellValue": 17,
+    "description": "A long, thin dagger designed for piercing armor joints and vital organs.",
+    "tags": ["melee", "piercing", "stealth", "armor-breaking"]
+  },
+  {
+    "id": "throwing_axe",
+    "name": "Throwing Axe",
+    "type": "weapon",
+    "category": "axe",
+    "rarity": "common",
+    "damage": {
+      "base": 8,
+      "min": 6,
+      "max": 10
+    },
+    "scaling": {
+      "strength": 0.5,
+      "agility": 0.4,
+      "intelligence": 0.0
+    },
+    "combatModifiers": {
+      "speed": 6,
+      "critChance": 0.06,
+      "blockPower": 1
+    },
+    "allowedClasses": ["warrior", "barbarian", "ranger", "rogue"],
+    "allowedRaces": ["human", "elf", "dwarf", "orc", "halfling", "gnome", "tiefling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 45,
+    "sellValue": 22,
+    "description": "A balanced axe built for hurling at enemies.",
+    "tags": ["melee", "ranged", "slashing", "thrown"]
+  },
+  {
+    "id": "throwing_knives",
+    "name": "Throwing Knives",
+    "type": "weapon",
+    "category": "dagger",
+    "rarity": "common",
+    "damage": {
+      "base": 5,
+      "min": 3,
+      "max": 7
+    },
+    "scaling": {
+      "strength": 0.1,
+      "agility": 0.8,
+      "intelligence": 0.0
+    },
+    "combatModifiers": {
+      "speed": 12,
+      "critChance": 0.09,
+      "blockPower": 0
+    },
+    "allowedClasses": ["rogue", "assassin", "ranger"],
+    "allowedRaces": ["human", "elf", "halfling", "gnome", "tiefling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 30,
+    "sellValue": 15,
+    "description": "A set of lightweight, balanced knives made for throwing.",
+    "tags": ["ranged", "piercing", "thrown", "consumable"]
+  },
+  {
+    "id": "wand",
+    "name": "Wand",
+    "type": "weapon",
+    "category": "wand",
+    "rarity": "common",
+    "damage": {
+      "base": 6,
+      "min": 4,
+      "max": 8
+    },
+    "scaling": {
+      "strength": 0.0,
+      "agility": 0.0,
+      "intelligence": 1.0
+    },
+    "combatModifiers": {
+      "speed": 8,
+      "critChance": 0.08,
+      "blockPower": 0
+    },
+    "allowedClasses": ["mage", "warlock", "sorcerer", "cleric"],
+    "allowedRaces": ["human", "elf", "gnome", "tiefling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 80,
+    "sellValue": 40,
+    "description": "A slender focus that channels magical energy into damaging bolts.",
+    "tags": ["ranged", "magical", "focus", "energy"]
+  },
+  {
+    "id": "warhammer",
+    "name": "Warhammer",
+    "type": "weapon",
+    "category": "hammer",
+    "rarity": "common",
+    "damage": {
+      "base": 12,
+      "min": 9,
+      "max": 15
+    },
+    "scaling": {
+      "strength": 0.9,
+      "agility": 0.1,
+      "intelligence": 0.0
+    },
+    "combatModifiers": {
+      "speed": -3,
+      "critChance": 0.05,
+      "blockPower": 4
+    },
+    "allowedClasses": ["warrior", "paladin", "cleric"],
+    "allowedRaces": ["human", "dwarf", "orc", "tiefling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 110,
+    "sellValue": 55,
+    "description": "A hammer with a blunt face on one side and a curved spike on the other, deadly against plate armor.",
+    "tags": ["melee", "bludgeoning", "piercing", "armor-breaking"]
+  },
+  {
+    "id": "whip",
+    "name": "Whip",
+    "type": "weapon",
+    "category": "whip",
+    "rarity": "common",
+    "damage": {
+      "base": 5,
+      "min": 3,
+      "max": 7
+    },
+    "scaling": {
+      "strength": 0.1,
+      "agility": 0.8,
+      "intelligence": 0.0
+    },
+    "combatModifiers": {
+      "speed": 10,
+      "critChance": 0.05,
+      "blockPower": 0
+    },
+    "allowedClasses": ["rogue", "ranger", "assassin"],
+    "allowedRaces": ["human", "elf", "halfling", "tiefling"],
+    "durability": {
+      "enabled": false,
+      "max": 0
+    },
+    "cost": 25,
+    "sellValue": 12,
+    "description": "A leather whip that cracks with sharp pain, capable of disarming or tripping.",
+    "tags": ["melee", "slashing", "reach", "finesse"]
+  }
+]
