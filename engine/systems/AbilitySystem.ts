@@ -196,7 +196,7 @@ export function executeAbility(
         };
 
         const healResult = calculateHeal(healInput);
-        const healTarget = effect.target === 'self' ? sourceState : targetState;
+        const healTarget = ability.target === 'self' ? sourceState : targetState;
         
         if (healTarget) {
           healTarget.currentHp = Math.min(healTarget.maxHp, healTarget.currentHp + healResult.finalHeal);
@@ -215,7 +215,7 @@ export function executeAbility(
 
       case 'shield': {
         const shieldAmount = effect.value || 0;
-        const shieldTarget = effect.target === 'self' ? sourceState : targetState;
+        const shieldTarget = ability.target === 'self' ? sourceState : targetState;
         
         if (shieldTarget) {
           shieldTarget.shield = applyShield(shieldTarget.shield, shieldAmount);
@@ -234,7 +234,7 @@ export function executeAbility(
 
       case 'status': {
         if (effect.statusId && targetState) {
-          const statusTarget = effect.target === 'self' ? sourceState : targetState;
+          const statusTarget = ability.target === 'self' ? sourceState : targetState;
           const result = applyStatus(statusTarget, effect.statusId, effect.duration, effect.value);
           
           if (result.event) {

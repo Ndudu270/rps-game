@@ -325,19 +325,22 @@ export class InventoryScene implements IScene {
     if (!this.equippedPanel || !this.playerData) return;
     
     const slots = ['weapon', 'armor', 'accessory'];
+    const panel = this.equippedPanel;
     
     slots.forEach((slotId, index) => {
-      const slotContainer = this.equippedPanel.getChildAt(index + 2) as Container; // Skip bg and title
+      const slotContainer = panel.getChildAt(index + 2);
       if (slotContainer) {
-        const item = this.playerData.inventory.equipped[slotId as keyof EquippedItems];
-        const itemNameText = slotContainer.getChildByName('itemName') as Text;
+        const item = this.playerData!.inventory.equipped[slotId as keyof EquippedItems];
+        const itemNameText = slotContainer.getChildByName('itemName') as Text | null;
         
-        if (item) {
-          itemNameText.text = item.name;
-          itemNameText.style = new TextStyle({ fontFamily: 'Arial', fontSize: 12, fill: this.getRarityColor(item.rarity) });
-        } else {
-          itemNameText.text = 'Empty';
-          itemNameText.style = new TextStyle({ fontFamily: 'Arial', fontSize: 12, fill: 0x888888 });
+        if (itemNameText) {
+          if (item) {
+            itemNameText.text = item.name;
+            itemNameText.style = new TextStyle({ fontFamily: 'Arial', fontSize: 12, fill: this.getRarityColor(item.rarity) });
+          } else {
+            itemNameText.text = 'Empty';
+            itemNameText.style = new TextStyle({ fontFamily: 'Arial', fontSize: 12, fill: 0x888888 });
+          }
         }
       }
     });
@@ -503,10 +506,10 @@ export class InventoryScene implements IScene {
         this.handleEquipClick(item!, item!.type as 'weapon' | 'armor' | 'accessory');
       });
       actionsContainer.addChild(equipBtn);
-    } else if (itemSlot && itemSlot !== 'inventory') {
+    } else if (itemSlot && (itemSlot === 'weapon' || itemSlot === 'armor' || itemSlot === 'accessory')) {
       // Show unequip button
       const unequipBtn = this.createActionButton('UNEQUIP', 0xaa4444, () => {
-        this.handleUnequipClick(itemSlot as 'weapon' | 'armor' | 'accessory');
+        this.handleUnequipClick(itemSlot);
       });
       actionsContainer.addChild(unequipBtn);
     }
