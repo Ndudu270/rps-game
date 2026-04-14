@@ -1,45 +1,103 @@
-// Player Data Manager - Handles persistent player data including inventory and shop
+/**
+ * Player Data Manager - New RPG Progression Model
+ * 
+ * Handles persistent character data including:
+ * - Character creation and progression
+ * - Leveling up with XP
+ * - Skill points and skill upgrades
+ * - Equipment points and gear progression
+ * - Game mode progress
+ */
 
-import { Inventory, createInventory, serializeInventory, deserializeInventory, calculateDerivedStats } from '../../shared/types/inventory';
-import { ShopState, createDefaultShop, serializeShopState, deserializeShopState, addGold } from '../../shared/types/shop';
+import { 
+  Character, 
+  CharacterCreationData, 
+  createNewCharacter, 
+  serializeCharacter, 
+  deserializeCharacter,
+  addXp,
+  spendSkillPoints,
+  spendEquipmentPoints,
+} from '../../shared/types/character';
 
-export interface PlayerProfile {
-  name: string;
-  race: string;
-  class: string;
-  background: string;
-  talents: string[];
-  stats: {
-    strength: number;
-    agility: number;
-    intelligence: number;
-    charisma: number;
-    endurance: number;
-    perception: number;
-    luck: number;
+export interface PlayerProgress {
+  // Story Mode progress
+  storyMode: {
+    currentPart: number;  // 1-10
+    completedParts: number[];
+    partProgress: Record<number, { completed: boolean; stars: number }>;
+  };
+  
+  // Tower Mode progress
+  towerMode: {
+    highestFloor: number;  // 1-100
+    completedFloors: number[];
+  };
+  
+  // Survival Mode progress
+  survivalMode: {
+    bestWave: number;
+    bestDifficulty: string;
+  };
+  
+  // Training Mode
+  trainingMode: {
+    sessionsCompleted: number;
+  };
+  
+  // Duels
+  duels: {
+    wins: number;
+    losses: number;
+    rating: number;
   };
 }
 
 export interface PlayerData {
-  profile: PlayerProfile | null;
-  inventory: Inventory;
-  shop: ShopState;
-  gold: number; // Deprecated: use shop.playerGold instead
+  character: Character | null;
+  progress: PlayerProgress;
+  gold: number;
 }
 
-const STORAGE_KEY = 'rpsWarPlayerData';
+const STORAGE_KEY = 'rpsWarPlayerData_v2';
+
+/**
+ * Create default player progress tracking
+ */
+function createDefaultProgress(): PlayerProgress {
+  return {
+    storyMode: {
+      currentPart: 1,
+      completedParts: [],
+      partProgress: {},
+    },
+    towerMode: {
+      highestFloor: 0,
+      completedFloors: [],
+    },
+    survivalMode: {
+      bestWave: 0,
+      bestDifficulty: 'None',
+    },
+    trainingMode: {
+      sessionsCompleted: 0,
+    },
+    duels: {
+      wins: 0,
+      losses: 0,
+      rating: 1000,
+    },
+  };
+}
 
 /**
  * Create default player data for new players
  */
 export function createDefaultPlayerData(): PlayerData {
-  const shop = createDefaultShop();
-  
   return {
-    profile: null,
-    inventory: createInventory(),
-    shop,
-    gold: shop.playerGold,
+    character: null,
+    progress: createDefaultProgress(),
+    gold: 100,  // Starting gold
   };
 }
 
@@ -60,21 +118,23 @@ export function loadPlayerData(): PlayerData {
   try {
     const parsed = JSON.parse(saved);
     
-    // Reconstruct inventory
-    const inventory = parsed.inventory 
-      ? deserializeInventory(JSON.stringify(parsed.inventory))
-      : createInventory();
+    // Reconstruct character
+    let character: Character | null = null;
+    if (parsed.character) {
+      if (typeof parsed.character === 'string') {
+        character = deserializeCharacter(parsed.character);
+      } else {
+        character = parsed.character as Character;
+      }
+    }
     
-    // Reconstruct shop
-    const shop = parsed.shop 
-      ? deserializeShopState(JSON.stringify(parsed.shop))
-      : createDefaultShop();
+    // Reconstruct progress
+    const progress: PlayerProgress = parsed.progress || createDefaultProgress();
     
     return {
-      profile: parsed.profile || null,
-      inventory,
-      shop,
-      gold: parsed.gold ?? shop.playerGold,
+      character,
+      progress,
+      gold: parsed.gold ?? 100,
     };
   } catch (e) {
     console.error('Failed to load player data:', e);
@@ -92,16 +152,9 @@ export function savePlayerData(data: PlayerData): void {
   
   try {
     const toSave = {
-      profile: data.profile,
-      inventory: {
-        items: data.inventory.items,
-        equipped: data.inventory.equipped,
-      },
-      shop: {
-        categories: data.shop.categories,
-        playerGold: data.shop.playerGold,
-      },
-      gold: data.shop.playerGold, // Keep gold in sync with shop
+      character: data.character ? serializeCharacter(data.character) : null,
+      progress: data.progress,
+      gold: data.gold,
     };
     
     localStorage.setItem(STORAGE_KEY, JSON.stringify(toSave));
@@ -115,59 +168,164 @@ export function savePlayerData(data: PlayerData): void {
  */
 export function initializePlayerData(): PlayerData {
   const data = loadPlayerData();
-  savePlayerData(data); // Ensure data is saved
+  savePlayerData(data);
   return data;
 }
 
 /**
- * Update player profile
+ * Create a new character
  */
-export function updatePlayerProfile(data: PlayerData, profile: PlayerData['profile']): void {
-  data.profile = profile;
+export function createCharacter(data: PlayerData, creationData: CharacterCreationData): Character {
+  const character = createNewCharacter(creationData);
+  data.character = character;
+  savePlayerData(data);
+  return character;
+}
+
+/**
+ * Get the current character
+ */
+export function getCharacter(data: PlayerData): Character | null {
+  return data.character;
+}
+
+/**
+ * Add XP to character
+ */
+export function addXpToCharacter(data: PlayerData, xpAmount: number): { leveledUp: boolean; newLevel: number } | null {
+  if (!data.character) {
+    return null;
+  }
+  
+  const result = addXp(data.character, xpAmount);
+  savePlayerData(data);
+  return result;
+}
+
+/**
+ * Spend skill points
+ */
+export function spendSkillPointsOnCharacter(
+  data: PlayerData, 
+  skillId: string, 
+  cost: number
+): boolean {
+  if (!data.character) {
+    return false;
+  }
+  
+  const success = spendSkillPoints(data.character, skillId, cost);
+  if (success) {
+    savePlayerData(data);
+  }
+  return success;
+}
+
+/**
+ * Spend equipment points
+ */
+export function spendEquipmentPointsOnCharacter(
+  data: PlayerData,
+  slot: 'weapon' | 'armor' | 'accessory',
+  itemId: string,
+  cost: number
+): boolean {
+  if (!data.character) {
+    return false;
+  }
+  
+  const success = spendEquipmentPoints(data.character, slot, itemId, cost);
+  if (success) {
+    savePlayerData(data);
+  }
+  return success;
+}
+
+/**
+ * Update story mode progress
+ */
+export function updateStoryProgress(
+  data: PlayerData,
+  partNumber: number,
+  completed: boolean,
+  stars: number = 0
+): void {
+  if (completed && !data.progress.storyMode.completedParts.includes(partNumber)) {
+    data.progress.storyMode.completedParts.push(partNumber);
+  }
+  data.progress.storyMode.partProgress[partNumber] = { completed, stars };
+  
+  // Unlock next part if completed
+  if (completed && partNumber === data.progress.storyMode.currentPart && partNumber < 10) {
+    data.progress.storyMode.currentPart = partNumber + 1;
+  }
+  
   savePlayerData(data);
 }
 
 /**
- * Add gold to player (from rewards, etc.)
+ * Update tower mode progress
  */
-export function addGoldToPlayer(data: PlayerData, amount: number): void {
-  addGold(data.shop, amount);
-  data.gold = data.shop.playerGold;
+export function updateTowerProgress(data: PlayerData, floorNumber: number): void {
+  if (floorNumber > data.progress.towerMode.highestFloor) {
+    data.progress.towerMode.highestFloor = floorNumber;
+  }
+  if (!data.progress.towerMode.completedFloors.includes(floorNumber)) {
+    data.progress.towerMode.completedFloors.push(floorNumber);
+  }
   savePlayerData(data);
 }
 
 /**
- * Set player gold (for initialization)
+ * Update survival mode progress
  */
-export function setPlayerGold(data: PlayerData, amount: number): void {
-  data.shop.playerGold = amount;
-  data.gold = amount;
+export function updateSurvivalProgress(
+  data: PlayerData,
+  wave: number,
+  difficulty: string
+): void {
+  if (wave > data.progress.survivalMode.bestWave) {
+    data.progress.survivalMode.bestWave = wave;
+    data.progress.survivalMode.bestDifficulty = difficulty;
+  }
   savePlayerData(data);
 }
 
 /**
- * Get derived stats for combat based on base stats and equipped items
+ * Update duel record
  */
-export function getDerivedStatsForCombat(
-  baseAtk: number,
-  baseDef: number,
-  baseSpd: number,
-  baseHp: number,
-  inventory: Inventory
-): { atk: number; def: number; spd: number; hp: number; critChance: number; luck: number } {
-  return calculateDerivedStats(
-    baseAtk,
-    baseDef,
-    baseSpd,
-    baseHp,
-    0, // base crit chance
-    0, // base luck
-    inventory.equipped
-  );
+export function updateDuelRecord(data: PlayerData, won: boolean, ratingChange: number): void {
+  if (won) {
+    data.progress.duels.wins++;
+  } else {
+    data.progress.duels.losses++;
+  }
+  data.progress.duels.rating += ratingChange;
+  savePlayerData(data);
 }
 
 /**
- * Reset player data (for testing or new game)
+ * Add gold to player
+ */
+export function addGold(data: PlayerData, amount: number): void {
+  data.gold += amount;
+  savePlayerData(data);
+}
+
+/**
+ * Spend gold
+ */
+export function spendGold(data: PlayerData, amount: number): boolean {
+  if (data.gold < amount) {
+    return false;
+  }
+  data.gold -= amount;
+  savePlayerData(data);
+  return true;
+}
+
+/**
+ * Reset player data (for new game)
  */
 export function resetPlayerData(): PlayerData {
   const newData = createDefaultPlayerData();
@@ -176,31 +334,15 @@ export function resetPlayerData(): PlayerData {
 }
 
 /**
- * Check if player has a specific item in inventory
- */
-export function hasItemInInventory(data: PlayerData, itemId: string): boolean {
-  return data.inventory.items.some(item => item.id === itemId) ||
-         Object.values(data.inventory.equipped).some(item => item?.id === itemId);
-}
-
-/**
- * Get total item count in inventory (including equipped)
- */
-export function getInventoryCount(data: PlayerData): number {
-  return data.inventory.items.length + 
-         Object.values(data.inventory.equipped).filter(Boolean).length;
-}
-
-/**
  * Export player data for backup
  */
 export function exportPlayerData(data: PlayerData): string {
   return JSON.stringify({
-    profile: data.profile,
-    inventory: data.inventory,
-    shop: data.shop,
+    character: data.character ? serializeCharacter(data.character) : null,
+    progress: data.progress,
+    gold: data.gold,
     exportedAt: Date.now(),
-    version: '1.0',
+    version: '2.0',
   });
 }
 
@@ -212,14 +354,9 @@ export function importPlayerData(importedData: string): PlayerData {
     const parsed = JSON.parse(importedData);
     
     const data: PlayerData = {
-      profile: parsed.profile || null,
-      inventory: parsed.inventory 
-        ? deserializeInventory(JSON.stringify(parsed.inventory))
-        : createInventory(),
-      shop: parsed.shop 
-        ? deserializeShopState(JSON.stringify(parsed.shop))
-        : createDefaultShop(),
-      gold: parsed.gold ?? parsed.shop?.playerGold ?? 500,
+      character: parsed.character ? deserializeCharacter(parsed.character) : null,
+      progress: parsed.progress || createDefaultProgress(),
+      gold: parsed.gold ?? 100,
     };
     
     savePlayerData(data);

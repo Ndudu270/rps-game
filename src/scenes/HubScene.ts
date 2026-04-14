@@ -1,12 +1,10 @@
-import { Container, Graphics, Text, TextStyle, Assets } from 'pixi.js';
+import { Container, Graphics, Text, TextStyle } from 'pixi.js';
 import { SceneManager, IScene } from './SceneManager';
 
 export class HubScene implements IScene {
   container: Container;
   private sceneManager: SceneManager;
   private playerData: any | null;
-  private overlays: Map<string, Container>;
-  private currentOverlay: string | null;
   private backgroundGraphics: Graphics;
   private particles: Graphics[];
   private particleFrame: number;
@@ -15,8 +13,6 @@ export class HubScene implements IScene {
     this.sceneManager = sceneManager;
     this.container = new Container();
     this.playerData = null;
-    this.overlays = new Map();
-    this.currentOverlay = null;
     this.backgroundGraphics = new Graphics();
     this.particles = [];
     this.particleFrame = 0;
@@ -29,7 +25,6 @@ export class HubScene implements IScene {
     this.createPlayerInfo();
     this.createModeButtons();
     this.createSideButtons();
-    this.createOverlays();
     this.startParticleAnimation();
   }
 
@@ -178,13 +173,13 @@ export class HubScene implements IScene {
   }
 
   private createModeButtons(): void {
+    // New RPG structure modes - matching the new game design
     const modes = [
-      { name: 'Story Mode', desc: 'Main Campaign', color: 0x8b0000, glow: 0xff4444 },
-      { name: 'Duels', desc: 'PvP Matchmaking', color: 0x4444aa, glow: 0x6666ff },
-      { name: 'Tournaments', desc: 'Bracket Battles', color: 0xaa8800, glow: 0xffcc00 },
-      { name: 'Underworld', desc: 'Boss Raids', color: 0x440044, glow: 0xff00ff },
-      { name: 'Survival', desc: 'Endless Waves', color: 0x006644, glow: 0x00ff88 },
-      { name: 'Training', desc: 'Practice Mode', color: 0x446666, glow: 0x88cccc },
+      { name: 'Story Mode', desc: '10-Part Campaign', color: 0x8b0000, glow: 0xff4444, scene: 'storyModeSelect' },
+      { name: 'Tower Mode', desc: 'Climb 100 Floors', color: 0x6633aa, glow: 0xaa66ff, scene: 'towerModeSelect' },
+      { name: 'Survival', desc: 'Endless Waves', color: 0x006644, glow: 0x00ff88, scene: 'survivalModeSelect' },
+      { name: 'Training', desc: 'Practice Combat', color: 0x446666, glow: 0x88cccc, scene: 'trainingModeSelect' },
+      { name: 'Duels', desc: 'PvP Battles', color: 0x4444aa, glow: 0x6666ff, scene: 'duelModeSelect' },
     ];
 
     const startY = 180;
@@ -246,9 +241,9 @@ export class HubScene implements IScene {
         title.scale.set(1);
       });
 
-      // Click handler
+      // Click handler - navigate to mode selection scene
       buttonContainer.on('pointerup', () => {
-        this.handleModeClick(mode.name);
+        this.sceneManager.switchScene(mode.scene);
       });
 
       (buttonContainer as any).bg = bg;
@@ -290,60 +285,13 @@ export class HubScene implements IScene {
     }
   }
 
-  private handleModeClick(modeName: string): void {
-    // Show loading overlay briefly then switch to placeholder
-    const loadingMessages: Record<string, string> = {
-      'Story Mode': 'Story Loading...',
-      'Duels': 'Matchmaking...',
-      'Tournaments': 'Tournament Lobby...',
-      'Underworld': 'Summoning Boss...',
-      'Survival': 'Preparing Arena...',
-      'Training': 'Training Ground...',
-    };
-
-    // For now, just log and show a temporary message
-    console.log(`Loading ${modeName}: ${loadingMessages[modeName]}`);
-    
-    // Create temporary loading overlay
-    this.showTemporaryLoading(loadingMessages[modeName]);
-  }
-
-  private showTemporaryLoading(message: string): void {
-    const overlay = new Container();
-    overlay.position.set(512, 384);
-    
-    // Semi-transparent background
-    const bg = new Graphics();
-    bg.rect(-300, -100, 600, 200);
-    bg.fill({ color: 0x000000, alpha: 0.8 });
-    overlay.addChild(bg);
-
-    const style = new TextStyle({
-      fontFamily: 'Arial Black',
-      fontSize: 32,
-      fontWeight: 'bold',
-      fill: 0xffffff,
-      stroke: { color: 0x4444ff, width: 2 },
-    });
-    const text = new Text({ text: message, style });
-    text.anchor.set(0.5);
-    overlay.addChild(text);
-
-    this.container.addChild(overlay);
-
-    // Remove after 1.5 seconds
-    setTimeout(() => {
-      this.container.removeChild(overlay);
-    }, 1500);
-  }
 
   private createSideButtons(): void {
     const sideButtons = [
-      { name: 'Character', y: 150 },
-      { name: 'Shop', y: 230 },
-      { name: 'Inventory', y: 310 },
-      { name: 'Achievements', y: 390 },
-      { name: 'Settings', y: 470 },
+      { name: 'Character', y: 150, scene: 'character' as const },
+      { name: 'Skill Shop', y: 230, scene: 'skillShop' as const },
+      { name: 'Equipment', y: 310, scene: 'equipmentShop' as const },
+      { name: 'Settings', y: 390, scene: 'settings' as const },
     ];
 
     const buttonWidth = 140;
@@ -388,9 +336,9 @@ export class HubScene implements IScene {
         text.scale.set(1);
       });
 
-      // Click handler
+      // Click handler - navigate to dedicated scene
       buttonContainer.on('pointerup', () => {
-        this.openOverlay(btn.name);
+        this.sceneManager.switchScene(btn.scene);
       });
 
       (buttonContainer as any).bg = bg;
@@ -400,334 +348,4 @@ export class HubScene implements IScene {
     });
   }
 
-  private createOverlays(): void {
-    this.createCharacterOverlay();
-    this.createShopOverlay();
-    this.createInventoryOverlay();
-    this.createAchievementsOverlay();
-    this.createSettingsOverlay();
-  }
-
-  private createBaseOverlay(title: string, contentCallback: (container: Container) => void): Container {
-    const overlay = new Container();
-    overlay.visible = false;
-
-    // Dimmed background
-    const dimBg = new Graphics();
-    dimBg.rect(0, 0, 1024, 768);
-    dimBg.fill({ color: 0x000000, alpha: 0.7 });
-    overlay.addChild(dimBg);
-
-    // Main panel
-    const panel = new Graphics();
-    panel.position.set(512, 384);
-    panel.roundRect(-350, -250, 700, 500, 15);
-    panel.fill({ color: 0x1a1a3e });
-    panel.stroke({ width: 3, color: 0x4444ff });
-    overlay.addChild(panel);
-
-    // Title bar
-    const titleBar = new Graphics();
-    titleBar.position.set(512, 150);
-    titleBar.roundRect(-350, -30, 700, 60, 10);
-    titleBar.fill({ color: 0x2a2a5e });
-    overlay.addChild(titleBar);
-
-    const titleStyle = new TextStyle({
-      fontFamily: 'Arial Black',
-      fontSize: 28,
-      fontWeight: 'bold',
-      fill: 0xffd700,
-      stroke: { color: 0x000000, width: 2 },
-    });
-    const titleText = new Text({ text: title, style: titleStyle });
-    titleText.anchor.set(0.5);
-    titleText.position.set(512, 150);
-    overlay.addChild(titleText);
-
-    // Close button
-    const closeBtn = new Container();
-    closeBtn.position.set(820, 130);
-    closeBtn.eventMode = 'static';
-    closeBtn.cursor = 'pointer';
-
-    const closeBg = new Graphics();
-    closeBg.circle(0, 0, 20);
-    closeBg.fill({ color: 0xaa2222 });
-    closeBtn.addChild(closeBg);
-
-    const closeText = new Text({ 
-      text: '✕', 
-      style: new TextStyle({ fontFamily: 'Arial', fontSize: 20, fontWeight: 'bold', fill: 0xffffff }) 
-    });
-    closeText.anchor.set(0.5);
-    closeBtn.addChild(closeText);
-
-    closeBtn.on('pointerenter', () => {
-      closeBg.clear();
-      closeBg.circle(0, 0, 20);
-      closeBg.fill({ color: 0xff4444 });
-    });
-    closeBtn.on('pointerleave', () => {
-      closeBg.clear();
-      closeBg.circle(0, 0, 20);
-      closeBg.fill({ color: 0xaa2222 });
-    });
-    closeBtn.on('pointerup', () => {
-      this.closeOverlay();
-    });
-
-    overlay.addChild(closeBtn);
-
-    // Content area
-    const contentContainer = new Container();
-    contentContainer.position.set(512, 384);
-    contentCallback(contentContainer);
-    overlay.addChild(contentContainer);
-
-    return overlay;
-  }
-
-  private createCharacterOverlay(): void {
-    const overlay = this.createBaseOverlay('Character', (content) => {
-      if (!this.playerData) {
-        const noDataStyle = new TextStyle({
-          fontFamily: 'Arial',
-          fontSize: 18,
-          fill: 0xff6666,
-        });
-        const noData = new Text({ text: 'No character data found.', style: noDataStyle });
-        noData.anchor.set(0.5);
-        content.addChild(noData);
-        return;
-      }
-
-      const lines = [
-        `Name: ${this.playerData.name}`,
-        `Race: ${this.playerData.race}`,
-        `Class: ${this.playerData.class}`,
-        `Background: ${this.playerData.background}`,
-        '',
-        'Stats:',
-        `  Strength: ${this.playerData.stats.strength}`,
-        `  Agility: ${this.playerData.stats.agility}`,
-        `  Intelligence: ${this.playerData.stats.intelligence}`,
-        `  Charisma: ${this.playerData.stats.charisma}`,
-        `  Endurance: ${this.playerData.stats.endurance}`,
-        `  Perception: ${this.playerData.stats.perception}`,
-        `  Luck: ${this.playerData.stats.luck}`,
-        '',
-        `Talents: ${this.playerData.talents.length > 0 ? this.playerData.talents.join(', ') : 'None'}`,
-      ];
-
-      const style = new TextStyle({
-        fontFamily: 'Arial',
-        fontSize: 16,
-        fill: 0xffffff,
-        lineHeight: 26,
-      });
-      const text = new Text({ text: lines.join('\n'), style });
-      text.anchor.set(0.5, 0);
-      text.position.y = -150;
-      content.addChild(text);
-    });
-
-    this.overlays.set('Character', overlay);
-    this.container.addChild(overlay);
-  }
-
-  private createShopOverlay(): void {
-    const overlay = this.createBaseOverlay('Shop', (content) => {
-      const style = new TextStyle({
-        fontFamily: 'Arial',
-        fontSize: 18,
-        fill: 0xcccccc,
-        align: 'center',
-      });
-      const text = new Text({ 
-        text: 'Coming Soon!\n\nWeapons, gear, and upgrades will be available here.', 
-        style,
-      });
-      text.anchor.set(0.5);
-      content.addChild(text);
-    });
-
-    this.overlays.set('Shop', overlay);
-    this.container.addChild(overlay);
-  }
-
-  private createInventoryOverlay(): void {
-    const overlay = this.createBaseOverlay('Inventory', (content) => {
-      const style = new TextStyle({
-        fontFamily: 'Arial',
-        fontSize: 18,
-        fill: 0xcccccc,
-        align: 'center',
-      });
-      const text = new Text({ 
-        text: 'Coming Soon!\n\nYour items and equipment will be displayed here.', 
-        style,
-      });
-      text.anchor.set(0.5);
-      content.addChild(text);
-    });
-
-    this.overlays.set('Inventory', overlay);
-    this.container.addChild(overlay);
-  }
-
-  private createAchievementsOverlay(): void {
-    const overlay = this.createBaseOverlay('Achievements', (content) => {
-      const style = new TextStyle({
-        fontFamily: 'Arial',
-        fontSize: 18,
-        fill: 0xcccccc,
-        align: 'center',
-      });
-      const text = new Text({ 
-        text: 'Coming Soon!\n\nTrack your progress and milestones here.', 
-        style,
-      });
-      text.anchor.set(0.5);
-      content.addChild(text);
-    });
-
-    this.overlays.set('Achievements', overlay);
-    this.container.addChild(overlay);
-  }
-
-  private createSettingsOverlay(): void {
-    const overlay = this.createBaseOverlay('Settings', (content) => {
-      let yPos = -100;
-
-      // Volume slider
-      const volumeLabel = new Text({ 
-        text: 'Volume', 
-        style: new TextStyle({ fontFamily: 'Arial', fontSize: 18, fill: 0xffffff }) 
-      });
-      volumeLabel.anchor.set(0, 0.5);
-      volumeLabel.position.set(-200, yPos);
-      content.addChild(volumeLabel);
-
-      const volumeSliderBg = new Graphics();
-      volumeSliderBg.roundRect(-50, yPos - 15, 200, 30, 5);
-      volumeSliderBg.fill({ color: 0x3a3a5e });
-      content.addChild(volumeSliderBg);
-
-      const volumeFill = new Graphics();
-      volumeFill.roundRect(-50, yPos - 15, 100, 30, 5);
-      volumeFill.fill({ color: 0x4444ff });
-      content.addChild(volumeFill);
-
-      yPos += 80;
-
-      // Graphics quality toggle
-      const graphicsLabel = new Text({ 
-        text: 'Graphics Quality', 
-        style: new TextStyle({ fontFamily: 'Arial', fontSize: 18, fill: 0xffffff }) 
-      });
-      graphicsLabel.anchor.set(0, 0.5);
-      graphicsLabel.position.set(-200, yPos);
-      content.addChild(graphicsLabel);
-
-      const qualityOptions = ['Low', 'Medium', 'High'];
-      let selectedQuality = 1;
-
-      qualityOptions.forEach((opt, idx) => {
-        const btn = new Container();
-        btn.position.set(-50 + idx * 120, yPos);
-        btn.eventMode = 'static';
-        btn.cursor = 'pointer';
-
-        const bg = new Graphics();
-        bg.roundRect(-50, -15, 100, 30, 5);
-        bg.fill({ color: idx === selectedQuality ? 0x4444ff : 0x3a3a5e });
-        btn.addChild(bg);
-
-        const txt = new Text({ 
-          text: opt, 
-          style: new TextStyle({ fontFamily: 'Arial', fontSize: 14, fill: 0xffffff }) 
-        });
-        txt.anchor.set(0.5);
-        btn.addChild(txt);
-
-        btn.on('pointerenter', () => {
-          if (idx !== selectedQuality) {
-            bg.clear();
-            bg.roundRect(-50, -15, 100, 30, 5);
-            bg.fill({ color: 0x5555aa });
-          }
-        });
-
-        btn.on('pointerleave', () => {
-          if (idx !== selectedQuality) {
-            bg.clear();
-            bg.roundRect(-50, -15, 100, 30, 5);
-            bg.fill({ color: 0x3a3a5e });
-          }
-        });
-
-        btn.on('pointerup', () => {
-          selectedQuality = idx;
-          // Update all buttons
-          qualityOptions.forEach((_, optIdx) => {
-            const child = content.children[content.children.length - (qualityOptions.length - optIdx)];
-            if (child instanceof Container) {
-              const bgChild = child.children[0] as Graphics;
-              const isSel = optIdx === selectedQuality;
-              bgChild.clear();
-              bgChild.roundRect(-50, -15, 100, 30, 5);
-              bgChild.fill({ color: isSel ? 0x4444ff : 0x3a3a5e });
-            }
-          });
-        });
-
-        content.addChild(btn);
-      });
-
-      yPos += 100;
-
-      const infoStyle = new TextStyle({
-        fontFamily: 'Arial',
-        fontSize: 14,
-        fill: 0x888888,
-      });
-      const info = new Text({ 
-        text: '(Visual only - settings not saved)', 
-        style: infoStyle 
-      });
-      info.anchor.set(0.5);
-      info.position.y = yPos;
-      content.addChild(info);
-    });
-
-    this.overlays.set('Settings', overlay);
-    this.container.addChild(overlay);
-  }
-
-  private openOverlay(name: string): void {
-    // Check if opening Inventory or Shop - use dedicated scenes instead
-    if (name === 'Inventory') {
-      this.sceneManager.switchScene('inventory');
-      return;
-    }
-    if (name === 'Shop') {
-      this.sceneManager.switchScene('shop');
-      return;
-    }
-    
-    this.closeOverlay();
-    const overlay = this.overlays.get(name);
-    if (overlay) {
-      overlay.visible = true;
-      this.currentOverlay = name;
-    }
-  }
-
-  private closeOverlay(): void {
-    this.overlays.forEach((overlay) => {
-      overlay.visible = false;
-    });
-    this.currentOverlay = null;
-  }
 }
