@@ -162,6 +162,12 @@ export const defaultGameConfig: GameConfig = {
   },
 };
 
+// Direct exports for easy access in scenes
+export const STORY_PARTS = defaultGameConfig.storyMode.parts;
+export const TOWER_FLOORS = defaultGameConfig.towerMode.floors;
+export const SURVIVAL_DIFFICULTIES = defaultGameConfig.survivalMode.difficulties;
+export const TRAINING_DUMMIES = defaultGameConfig.trainingMode.dummyTypes;
+
 function generateXpCurve(maxLevel: number): number[] {
   const xpCurve: number[] = [];
   for (let i = 0; i < maxLevel; i++) {
