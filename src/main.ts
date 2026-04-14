@@ -6,9 +6,16 @@ import { SettingsScene } from './scenes/SettingsScene';
 import { GameScene } from './scenes/GameScene';
 import { CharacterCreationScene } from './scenes/CharacterCreationScene';
 import { HubScene } from './scenes/HubScene';
-import { InventoryScene } from './scenes/InventoryScene';
-import { ShopScene } from './scenes/ShopScene';
+import { SkillShopScene } from './scenes/SkillShopScene';
+import { EquipmentShopScene } from './scenes/EquipmentShopScene';
 import { CharacterScene } from './scenes/CharacterScene';
+
+// Mode selection scenes
+import { StoryModeSelectScene } from './scenes/modes/StoryModeSelectScene';
+import { TowerModeSelectScene } from './scenes/modes/TowerModeSelectScene';
+import { SurvivalModeSelectScene } from './scenes/modes/SurvivalModeSelectScene';
+import { TrainingModeSelectScene } from './scenes/modes/TrainingModeSelectScene';
+import { DuelModeSelectScene } from './scenes/modes/DuelModeSelectScene';
 
 // Initialize Pixi application
 const app = new Application();
@@ -34,12 +41,19 @@ async function init() {
   sceneManager.register('game', () => new GameScene(sceneManager));
   sceneManager.register('characterCreation', () => new CharacterCreationScene(sceneManager));
   sceneManager.register('hub', () => new HubScene(sceneManager));
-  sceneManager.register('inventory', () => new InventoryScene(sceneManager));
-  sceneManager.register('shop', () => new ShopScene(sceneManager));
+  sceneManager.register('skillShop', () => new SkillShopScene(sceneManager));
+  sceneManager.register('equipmentShop', () => new EquipmentShopScene(sceneManager));
   sceneManager.register('character', () => new CharacterScene(sceneManager));
   
-  // Note: Mode scenes (storyMode, towerMode, survivalMode, trainingMode, duelMode)
-  // will be implemented as the game modes are developed
+  // Register mode selection scenes
+  sceneManager.register('storyModeSelect', () => new StoryModeSelectScene(sceneManager));
+  sceneManager.register('towerModeSelect', () => new TowerModeSelectScene(sceneManager));
+  sceneManager.register('survivalModeSelect', () => new SurvivalModeSelectScene(sceneManager));
+  sceneManager.register('trainingModeSelect', () => new TrainingModeSelectScene(sceneManager));
+  sceneManager.register('duelModeSelect', () => new DuelModeSelectScene(sceneManager));
+  
+  // Note: Actual gameplay mode scenes (storyMode, towerMode, survivalMode, trainingMode, duelMode)
+  // will be implemented with combat mechanics
   
   // Determine starting scene based on saved player data
   const playerData = localStorage.getItem('playerData');

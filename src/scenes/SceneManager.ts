@@ -1,6 +1,52 @@
 import { Container, Graphics, Text, TextStyle } from 'pixi.js';
 
-export type SceneName = 'mainMenu' | 'settings' | 'game' | 'characterCreation' | 'hub' | 'inventory' | 'shop' | 'character' | 'storyMode' | 'towerMode' | 'survivalMode' | 'trainingMode' | 'duelMode';
+/**
+ * Scene names for the new RPG structure
+ * 
+ * Core Scenes:
+ * - mainMenu: Main menu with Start/Settings/Exit
+ * - characterCreation: Character building (name, stats, race, class, background, talents)
+ * - hub: Central hub for mode selection and navigation
+ * - character: Character screen showing stats, skills, equipment
+ * - inventory: Equipment and item management
+ * - shop: Skill shop and equipment shop
+ * - settings: Game settings
+ * - game: Combat/gameplay scene
+ * 
+ * Game Mode Selection Screens:
+ * - storyModeSelect: Select Story Part (1-10)
+ * - towerModeSelect: Select Tower Floor (1-100)
+ * - survivalModeSelect: Select Survival Difficulty
+ * - trainingModeSelect: Select Training Dummy
+ * - duelModeSelect: Select Duel Type (Ranked/Casual/Custom)
+ * 
+ * Game Modes (actual gameplay):
+ * - storyMode: Story campaign gameplay
+ * - towerMode: Tower climb gameplay
+ * - survivalMode: Survival wave gameplay
+ * - trainingMode: Training combat gameplay
+ * - duelMode: PvP gameplay
+ */
+export type SceneName = 
+  | 'mainMenu'
+  | 'settings'
+  | 'game'
+  | 'characterCreation'
+  | 'hub'
+  | 'inventory'
+  | 'skillShop'
+  | 'equipmentShop'
+  | 'character'
+  | 'storyModeSelect'
+  | 'towerModeSelect'
+  | 'survivalModeSelect'
+  | 'trainingModeSelect'
+  | 'duelModeSelect'
+  | 'storyMode'
+  | 'towerMode'
+  | 'survivalMode'
+  | 'trainingMode'
+  | 'duelMode';
 
 export interface IScene {
   container: Container;
